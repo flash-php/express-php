@@ -1,11 +1,13 @@
 <?php global $auth;
 
-$auth->set_models(['User']);
+// $auth->set_models(['User']);
 
-$auth->get('/index', function($req, $res) {
-  // $req->model->getUserById([5, 6, 8]);
+$auth->get('/index/:id/:second_id', function($req, $res) {
+  $req->model->getUserById([5, 6, 8]);
 
-  $res->send('Route working');
+  $res->send('Route working <br>');
+
+  var_dump($req->params->id);
 
 });
 

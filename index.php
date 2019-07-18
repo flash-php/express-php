@@ -13,3 +13,4 @@ include_all('./routes');
 include_all('./models');
 
 Router::start();
+Router::print_all();
