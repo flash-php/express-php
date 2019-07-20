@@ -8,6 +8,7 @@ class Model {
   
   private static $schemas_assoc_array;
   private static $table_names;
+  private static $new_functions;
 
   // Constructor
   public function __construct($singular_name=null, $plural_name=null) {
@@ -30,7 +31,19 @@ class Model {
   }
 
   public function __call($function_name, $function_arguments) {
-    $this->run($function_name, ...$function_arguments);
+    if (isset(self::$new_functions[$function_name])) {
+      self::$new_functions[$function_name]($this, ...$function_arguments);
+    }
+    else {
+      $this->run($function_name, ...$function_arguments);
+    }
+  }
+
+  public function new($name, $callback) {
+    self::$new_functions[$name] = $callback;
+  }
+  public function query($str) {
+    echo "$str<br>";
   }
 
   private function run($model_func_name, $data=null, $options=[]) {

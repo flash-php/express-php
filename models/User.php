@@ -12,9 +12,18 @@ $UserModel->schema([
   'created_at' => PDO::PARAM_STR
 ]);
 
+$UserModel->new('special_query', function($db, $to, $from) {
+  $db->query("SELECT * FROM ...");
+
+  $db->select();
+  $db->create();
+  $db->update();
+  $db->delete();
+  
+  var_dump($to); echo "<br>";
+  var_dump($from); echo "<br>";
+  
+  // $req->models->special_query($to, $from);
+});
 
 
-/**
- * ['hashed_password', 'password', ...]
- */
-// $UserModel->new_query('doesPasswordCompare', function($data, $options) {});
