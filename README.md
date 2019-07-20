@@ -31,7 +31,7 @@ $methods->delete('/index', function($req, $res) {});
 
 #### $REQuest argument
 ```php
-$home->get('/index/{amount}/{offset}', function($req, $res) {
+$home->get('/index/:amount/:offset', function($req, $res) {
     // $_GET['username'];
     $req->body->username;
     $req->body_array['username'];
@@ -82,6 +82,55 @@ $UserModel->schema([
     'email' => PDO::PARAM_STR
 ]);
 
+```
+
+#### Models SQL
+```php
+$db->query("SELECT * FROM User WHERE id=:id AND firstname=:firstname;", [
+  'id' => 3,
+  'firstname' => 'Ingo'
+]);
+```
+
+```php
+$db->select('User', ['firstname' => 'Ingo'], ["lastname LIKE %andel%", "firstname=:firstname"]);
+$db->getBy('User', ['id' => 3, 'firstname' => 'Ingo']);
+$db->getUserBy([
+  'id' => 3, 
+  'firstname' => 'Ingo'
+]);
+$db->getUserById(3);
+$db->getUserByIdAndFirstname(3, 'Ingo');
+```
+
+```php
+$db->create('User', [
+  'firstname' => 'Ingo',
+  'lastname' => 'Andelhofs', 
+  'email' => 'ingom2000@gmail.com'
+]);
+$db->createUser([
+  'firstname' => 'Ingo',
+  'lastname' => 'Andelhofs', 
+  'email' => 'ingom2000@gmail.com'
+]);
+$user_id = $db->createUserReturnId([
+  'firstname' => 'Ingo',
+  'lastname' => 'Andelhofs', 
+  'email' => 'ingom2000@gmail.com'
+]);
+```
+
+```php
+$db->delete('User', ['id' => 3]);
+$db->deleteUser(['id' => 3]);
+$db->deleteUserById(3);
+```
+
+```php
+$db->update('User', ['id' => 3], ['firstname' => 'Ingo']);
+$db->updateUser(['id' => 3], ['firstname' => 'Ingo']);
+$db->updateUserById(3, ['firstname' => 'Ingo']);
 ```
 
 
