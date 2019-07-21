@@ -1,7 +1,7 @@
 <?php global $home;
 
 $home->get('/index', function() {
-  echo '/home/index';
+  // echo '/home/index';
 });
 
 
