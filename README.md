@@ -133,6 +133,11 @@ $db->updateUser(['id' => 3], ['firstname' => 'Ingo']);
 $db->updateUserById(3, ['firstname' => 'Ingo']);
 ```
 
+```php
+$db->duplicateUserById(3);
+$db->doesUserEmailExists();
+```
+
 
 
 ## Internal Information

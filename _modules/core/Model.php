@@ -172,18 +172,19 @@ class DataBase {
       $function_name_array = array_filter(explode('_', str_replace("By", "_", $function_name)));
       $fn_arr_len = count($function_name_array);
 
-      if ($fn_arr_len === 1) {
+      if ($fn_arr_len === 1) { //Example: getUserBy(['id' => 3]);
         // TODO: Check in schema's
         $table = $function_name_array[0];
         return $this->getBy($table, $arguments[0]);
       }
-      else if ($fn_arr_len === 2) {
+      else if ($fn_arr_len === 2) { // Example: getUserById(3);
         // TODO: Check in schema's
         $table = $function_name_array[0];
         $attributes = $function_name_array[1];
         $attribute_array = array_filter(explode('_', str_replace("And", "_", $attributes)));
         $attribute_array_assoc = [];
         
+        // Example: getUserByIdAndFirstname(5, 'Ingo');
         for($i=0, $l=count($attribute_array); $i < $l; ++$i) {
           $current_attribute = strtolower($attribute_array[$i]);
           $attribute_array_assoc[$current_attribute] = $arguments[$i];
@@ -296,7 +297,7 @@ class DataBase {
       }
     }
 
-    $this->prefix_array_keys($parameters, $prefix);
+    prefix_array_keys($parameters, $prefix);
 
     return join($separator, $where_array);
   }

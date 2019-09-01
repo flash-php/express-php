@@ -1,7 +1,13 @@
 <?php global $home;
 
-$home->get('/index', function() {
-  // echo '/home/index';
+$home->get('/index', function($req, $res) {
+  echo '/home/index';
+
+  // $db->create('User', [
+  //   'firstname' => 'Ingo',
+  //   'lastname' => 'Andelhofs',
+  //   'email' => 'ingom2000@gmail.com'
+  // ]);
 });
 
 

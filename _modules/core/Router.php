@@ -65,7 +65,7 @@ class Router {
     $full_route = &self::$routes_data[$route][$method][$req_method];
 
     $params = self::createParamArray($params, $full_route['params']);
-    $full_route['callback'](new RouterReqArg([], $params), new RouterResArg);
+    $full_route['callback'](new RouterReqArg($params), new RouterResArg);
   }
 
   private static function createParamArray($param_values, $param_keys) {
@@ -102,15 +102,12 @@ class RouterReqArg {
   public $params;
   public $model;
 
-  public function __construct($model_array=[], $param_array) {
+  public function __construct($param_array) {
     $this->body = GetNullObj::create($_GET);
     $this->params = GetNullObj::create($param_array);
-
-    $this->model = new Model($model_array);
+    $this->model = new Model([]);
   }
-
 };
-
 
 class RouterResArg {
   public function view($path) {
@@ -130,4 +127,12 @@ class RouterResArg {
   public function end($data) {
     die($data);
   }
+
+  public function js_log($data) {
+    echo "<script>";
+    echo $data;
+    echo "</script>";
+  }
+
+  // public function 
 };
