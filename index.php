@@ -36,7 +36,7 @@ $db = new DataBase();
 // $db->select('User', ['firstname' => 'Ingo'], ["lastname LIKE %andel%", "firstname=:firstname"]);
 // $db->getUserByIdAndFirstname(6, 'Ingo');
 // $db->getUserBy(['id' => 3]);
-// $db->getUserByIdAndFirstname([4, 5, 6], ['Ingo', 'Andel']);
+$db->getUserByIdAndFirstname([4, 5, 6], ['Ingo', 'Andel']);
 
 // $db->create('User', [
 //   'firstname' => 'Ingo',
@@ -45,4 +45,4 @@ $db = new DataBase();
 // ]);
 
 // $db->delete('User', ['id' => [4, 5]]);
-// $db->update('User', ['id' => 3], ['firstname' => 'Ingo', 'lastname' => 'andelhofs']);
+$db->update('User', ['id' => 3, 'firstname' => 'ingo'], ['firstname' => 'Ingo', 'lastname' => 'andelhofs']);

@@ -1,5 +1,6 @@
 <?php
 
+/// OLD
 class Model {
   // Variables
   private $singular_name;
@@ -137,19 +138,20 @@ class Model {
     return preg_split('/(?=[A-Z])/',$input);
   }
 };
-
+/// OLD
 
 
 
 class DataBase {
   // Variables
   protected $dbh = null;
-  protected $db_schema = [];
-
+  protected $db_schemas = [];
   private static $new_functions;
+  private static $database_schemas;
 
   // Constructor
   public function __construct($driver=DB_DRIVER, $hostname=DB_HOST, $port=DB_PORT, $database_name=DB_NAME, $username=DB_USERNAME, $password=DB_PASSWORD) {
+    // Create database connection
     $dsn = "$driver:host=$hostname;";
     $dsn .= empty($port) ? '' : "port=$port;";
     $dsn .= empty($database_name) ? '' : "dbname=$database_name;";
@@ -168,6 +170,9 @@ class DataBase {
       error_log($error);
       die("Database Error: $error_msg <br>");
     }
+
+    // Import db schema's
+    $this->import_schemas();
   }
 
   // Magic functions
@@ -225,6 +230,7 @@ class DataBase {
   public function query($statement, $parameters=[]) {
 
     // DEVELOPING
+    echo '<br><br>';
     echo $statement;
     echo '<pre>';
     print_r($parameters);
@@ -234,6 +240,8 @@ class DataBase {
 
 
     $dbh = $this->dbh;
+    $dbh->beginTransaction(); // IMPORTANT FOR lastInsertedId()
+
     $stmt = $dbh->prepare($statement);
 
     foreach(array_keys($parameters) as $name) {
@@ -246,13 +254,14 @@ class DataBase {
     if (strpos($statement, 'SELECT') !== false)
       return $stmt->fetchAll();
 
-    // TODO: Use Transactions
     if (strpos($statement, 'INSERT') !== false)
       return $dbh->lastInsertId('id');
+    
+    $dbh->commit(); // IMPORTANT FOR lastInsertedId()
 
     return true;
   }
-  public function new($name, $callback) {
+  public static function new($name, $callback) {
     self::$new_functions[$name] = $callback;
   }
 
@@ -323,14 +332,20 @@ class DataBase {
 
     return join($separator, $where_array);
   }
+  private function import_schemas() {
+    self::$database_schemas = DataBaseSchema::export();
+  }
+};
 
-  // Global helper ???
-  private function prefix_array_keys(&$array, $prefix='') {
-    if ($prefix === '') return;
+class DataBaseSchema {
+  private static $database_schemas;
 
-    foreach ($array as $k => $v) {
-      $array[$prefix.$k] = $v;
-      unset($array[$k]);
-    }
+  public function __construct($table_name, $schema) {
+    self::$database_schemas[$table_name] = $schema;
+  }
+
+  public static function export() {
+    return self::$database_schemas;
+    // Return: ['table_name' => ['col1' => PDO::PARAM_INT, ...]]
   }
 };
