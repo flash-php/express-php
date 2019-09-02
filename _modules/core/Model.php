@@ -42,6 +42,9 @@ class Model {
   public function new($name, $callback) {
     self::$new_functions[$name] = $callback;
   }
+
+
+
   public function query($str) {
     echo "$str<br>";
   }
@@ -143,6 +146,8 @@ class DataBase {
   protected $dbh = null;
   protected $db_schema = [];
 
+  private static $new_functions;
+
   // Constructor
   public function __construct($driver=DB_DRIVER, $hostname=DB_HOST, $port=DB_PORT, $database_name=DB_NAME, $username=DB_USERNAME, $password=DB_PASSWORD) {
     $dsn = "$driver:host=$hostname;";
@@ -167,6 +172,14 @@ class DataBase {
 
   // Magic functions
   public function __call($function_name, $arguments) {
+    // all
+    if (isset(self::$new_functions[$function_name])) {
+      $callback = &self::$new_functions[$function_name];
+      $callback($this, ...$arguments);
+      return;
+    }
+
+    // read
     if (substr($function_name, 0, 3) === 'get') {
       $function_name = substr($function_name, 3);
       $function_name_array = array_filter(explode('_', str_replace("By", "_", $function_name)));
@@ -195,9 +208,15 @@ class DataBase {
       else {
         echo "Database Error: Unkown functioncall from $function_name.";
       }
+
+      return;
     }
 
     // create
+    if (substr($function_name, 0, 6) === 'create') {
+      
+    }
+
     // update
     // delete
   }
@@ -232,6 +251,9 @@ class DataBase {
       return $dbh->lastInsertId('id');
 
     return true;
+  }
+  public function new($name, $callback) {
+    self::$new_functions[$name] = $callback;
   }
 
 
