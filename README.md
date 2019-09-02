@@ -74,14 +74,13 @@ $home->get('/index', function($req, $res) {
 
 #### Models
 ```php
-$UserModel = new Model('User', 'Users');
-$UserModel->schema([
-    'id' => PDO::PARAM_INT,
-    'firstname' => PDO::PARAM_STR,
-    'lastname' => PDO::PARAM_STR,
-    'email' => PDO::PARAM_STR
+new DataBaseSchema('User', [
+  'id' => PDO::PARAM_INT,
+  'contact_id' => PDO::PARAM_INT,
+  'firstname' => PDO::PARAM_STR,
+  'lastname' => PDO::PARAM_STR,
+  'email' => PDO::PARAM_STR
 ]);
-
 ```
 
 #### Models SQL
@@ -133,10 +132,6 @@ $db->updateUser(['id' => 3], ['firstname' => 'Ingo']);
 $db->updateUserById(3, ['firstname' => 'Ingo']);
 ```
 
-```php
-$db->duplicateUserById(3);
-$db->doesUserEmailExists();
-```
 
 
 
@@ -144,20 +139,82 @@ $db->doesUserEmailExists();
 ```php
 // Router -> $routes_data
 $home = new Router('/home');
-$home->get('/index/{id}', function($req, $res) {
-
+$home->get('/index/:id', function($req, $res) {
+  // Code here...
 });
 
 // Gives
 Router::$routes_data = [
-    'home' => ['index' => ['get' => ['callback' => function() {},
+    'home' => ['index' => ['get' => ['callback' => function($request, $response) {},
                                      'params' => [0 => 'id'],
-                                     'path' => '/home/index/{id}', 
+                                     'path' => '/home/index', 
                                      'request_method' => 'GET', 
-                                     'options' => '']
+                                     'options' => [...]]
         ]
     ]
 ];
+```
 
+## IN DEVELOPMENT ...
+```php
+$db->duplicateUserById(3);
+$db->doesUserEmailExists();
+```
 
+```php
+$home->get('/reqres/:id/:test', function($req, $res) {
+  $uname = $req['body']['username'];
+  
+  $id = $req['params']['id'];
+  $id = $req->params->id;
+
+  $test = $req['params']['test'];
+
+  $res->render('views/viewname');
+  $res->send('Just some text');
+});
+```
+
+```php
+$home->post('/middle/model', [
+  'middleware' => ['isUserLoggedIn'], 
+  'models' => ['Theme', 'Class']
+], function($req, $res) {
+
+  $req->middleware('isUserLoggedIn');
+
+  $req->model->Theme->getThemeById( $req->params->id );
+  $req->themeModel;
+
+});
+```
+
+```php
+$db->schema([
+  'id' => PDO::PARAM_INT,
+  'firstname' => PDO::PARAM_STR,
+  'lastname' => PDO::PARAM_STR,
+  'email' => PDO::PARAM_STR
+]);
+
+$id = $db->query("INSERT INTO User (firstname, lastname, email) VALUES (:firstname, :lastname, :email);", [
+  'firstname' => 'Ingo',
+  'lastname' => 'Andelhofs',
+  'email' => 'ingom2000@gmail.cm'
+]);
+
+$db->getBy('User', ['id' => 21, 'firstname' => 'Inga']);
+$db->select('User', ['firstname' => 'Ingo'], ["lastname LIKE %andel%", "firstname=:firstname"]);
+$db->getUserByIdAndFirstname(6, 'Ingo');
+$db->getUserBy(['id' => 3]);
+$db->getUserByIdAndFirstname([4, 5, 6], ['Ingo', 'Andel']);
+
+$db->create('User', [
+  'firstname' => 'Ingo',
+  'lastname' => 'Andelhofs', 
+  'email' => 'ingom2000@gmail.com'
+]);
+
+$db->delete('User', ['id' => [4, 5]]);
+$db->update('User', ['id' => 3, 'firstname' => 'ingo'], ['firstname' => 'Ingo', 'lastname' => 'andelhofs']);
 ```

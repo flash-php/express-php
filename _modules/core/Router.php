@@ -130,9 +130,7 @@ class RouterResArg {
 
   public function js_log($data) {
     echo "<script>";
-    echo $data;
+    echo "console.log('$data');";
     echo "</script>";
   }
-
-  // public function 
 };
