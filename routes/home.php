@@ -3,7 +3,7 @@
 $home->get('/index', function($req, $res) {
   echo '/home/index';
 
-  // $db->create('User', [
+  // $req->db->create('User', [
   //   'firstname' => 'Ingo',
   //   'lastname' => 'Andelhofs',
   //   'email' => 'ingom2000@gmail.com'

@@ -100,12 +100,12 @@ class Router {
 class RouterReqArg {
   public $body;
   public $params;
-  public $model;
+  public $db;
 
   public function __construct($param_array) {
     $this->body = GetNullObj::create($_GET);
     $this->params = GetNullObj::create($param_array);
-    $this->model = new Model([]);
+    $this->db = new DataBase();
   }
 };
 
