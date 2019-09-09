@@ -133,7 +133,17 @@ $db->updateUserById(3, ['firstname' => 'Ingo']);
 ```
 
 
+## Router Config
+```php
+$options = [
+  'mode' => Router::array  [Router::object, ...
 
+  'components_path' => './components/'
+  'model_path' => './models/',
+  'router_path' => './routes/',
+  'view_path' => './views/',
+]
+```
 
 ## Internal Information
 ```php
