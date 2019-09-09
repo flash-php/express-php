@@ -10,3 +10,6 @@ include './_modules/helpers/GetNullObj.php';
 // Core files
 include './_modules/core/Router.php';
 include './_modules/core/Model.php';
+
+// Templating engines
+include './_modules/engines/STE.php';

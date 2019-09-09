@@ -1,6 +1,5 @@
 <?php
 
-
 new DataBaseSchema('User', [
   'id' => PDO::PARAM_INT,
   'contact_id' => PDO::PARAM_INT,

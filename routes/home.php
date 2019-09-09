@@ -1,11 +1,14 @@
 <?php global $home;
 
 $home->get('/index', function($req, $res) {
-  echo '/home/index';
+  
+  // $res->view('home/index', ['name' => 'Ingo']);
+  $res->view('home/template', ['name' => 'Ingo']);
 
-  // $req->db->create('User', [
-  //   'firstname' => 'Ingo',
-  //   'lastname' => 'Andelhofs',
-  //   'email' => 'ingom2000@gmail.com'
-  // ]);
+});
+
+$home->get('/redirect_test', function($req, $res) {
+  // $res->send('Redirect succesfull');
+  $res->redirect_back();
+  // $res->send_r($_SERVER);
 });

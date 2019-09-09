@@ -15,5 +15,6 @@ include_all('./models');
 
 
 // Start router
+Router::set_template_engine('STE');
 Router::start();
-Router::print_all();
+// Router::print_all();
