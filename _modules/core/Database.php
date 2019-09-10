@@ -1,5 +1,11 @@
 <?php
 
+/**
+ * Database Class
+ * @author Ingo Andelhofs
+ * 
+ * A MySQL Database class that makes it easier to query, get, create, update, delete, duplicate and more.
+ */
 class DataBase {
   // Variables
   protected $dbh = null;
@@ -51,7 +57,7 @@ class DataBase {
       if ($fn_arr_len === 1) { //Example: getUserBy(['id' => 3]);
         // TODO: Check in schema's
         $table = $function_name_array[0];
-        return $this->getBy($table, $arguments[0]);
+        return $this->get($table, $arguments[0]);
       }
       else if ($fn_arr_len === 2) { // Example: getUserById(3);
         // TODO: Check in schema's
@@ -66,7 +72,7 @@ class DataBase {
           $attribute_array_assoc[$current_attribute] = $arguments[$i];
         }
 
-        return $this->getBy($table, $attribute_array_assoc);
+        return $this->get($table, $attribute_array_assoc);
       }
       else {
         echo "Database Error: Unkown functioncall from $function_name.";
@@ -93,7 +99,7 @@ class DataBase {
     echo '<pre>';
     print_r($parameters);
     echo '</pre>';
-    return;
+    // return;
     // DEVELOPING
 
 
@@ -109,14 +115,19 @@ class DataBase {
     
     $stmt->execute();
 
-    if (strpos($statement, 'SELECT') !== false)
-      return $stmt->fetchAll();
-
-    if (strpos($statement, 'INSERT') !== false)
-      return $dbh->lastInsertId('id');
+    if (strpos($statement, 'SELECT') !== false) {
+      $results = $stmt->fetchAll();
+      $dbh->commit(); // IMPORTANT (end the transaction)
+      return $results;
+    }
     
-    $dbh->commit(); // IMPORTANT FOR lastInsertedId()
-
+    if (strpos($statement, 'INSERT') !== false) {
+      $id = $dbh->lastInsertId('id');
+      $dbh->commit(); // IMPORTANT FOR lastInsertedId()
+      return $id;
+    }
+    
+    $dbh->commit(); // IMPORTANT (end the transaction)
     return true;
   }
   public static function new($name, $callback) {
@@ -124,41 +135,50 @@ class DataBase {
   }
 
 
-  // READ
-  public function getBy($table, $parameters) {
-    $where_str = $this->create_where_equals_str($parameters);
-    return $this->query("SELECT * FROM $table WHERE $where_str;", $parameters);
+  // Advanced queries
+  public function get($table_name, $where_assoc) {
+    $where_str = $this->create_where_equals_str($where_assoc);
+    return $this->query("SELECT * FROM $table_name WHERE $where_str;", $where_assoc);
   }
-  public function select($table, $data, $where_array) {
-    $where_str = join(" AND ", $where_array);
-    return $this->query("SELECT * FROM $table WHERE $where_str;", $data);
-  }
-
-  // CREATE
-  public function create($table, $insert_data) {
-    $values = array_keys($insert_data);
+  
+  public function create($table_name, $insert_assoc) {
+    $values = array_keys($insert_assoc);
     $prepared_values = ':'.join($values, ', :');
     $values = join($values, ', ');
 
-    $this->query("INSERT INTO $table ($values) VALUES ($prepared_values);", $insert_data);
-    return true;
+    return $this->query("INSERT INTO $table_name ($values) VALUES ($prepared_values);", $insert_assoc);
   }
 
-  // UPDATE
-  public function update($table, $where_data, $new_data) {
-    $new_data_str = $this->create_where_equals_str($new_data, ', ', 'new_');
-    $where_str = $this->create_where_equals_str($where_data, ' AND ', 'where_');
+  public function update($table_name, $where_assoc, $updated_assoc) {
+    $updated_str = $this->create_where_equals_str($updated_assoc, ', ', 'updated_');
+    $where_str = $this->create_where_equals_str($where_assoc, ' AND ', 'where_');
 
-    $data = array_merge($where_data, $new_data);
+    $where_and_updated_assoc = array_merge($where_assoc, $updated_assoc);
 
-    return $this->query("UPDATE $table SET $new_data_str WHERE $where_str;", $data);
+    return $this->query("UPDATE $table_name SET $updated_str WHERE $where_str;", $where_and_updated_assoc);
+  }
+  
+  public function delete($table_name, $where_assoc) {
+    $where_str = $this->create_where_equals_str($where_assoc);
+    return $this->query("DELETE FROM $table_name WHERE $where_str;", $where_assoc);
   }
 
-  // DELETE
-  public function delete($table, $where_data) {
-    $where_str = $this->create_where_equals_str($where_data);
-    return $this->query("DELETE FROM $table WHERE $where_str;", $where_data);
+  public function exists($table_name, $where_assoc) {
+    $results = $this->get($table_name, $where_assoc);
+    return !empty($results);
   }
+
+  public function duplicate($table_name, $where_assoc, $primary_keys = ['id']) {
+    $result = $this->get($table_name, $where_assoc);
+
+    if (empty($result)) return -1;
+    $insert_assoc = $result[0];
+    foreach ($primary_keys as $key) {
+      if (isset($insert_assoc[$key])) unset($insert_assoc[$key]);
+    }
+    return $this->create($table_name, $insert_assoc);
+  }
+
 
   
   // Helper functions
@@ -195,6 +215,14 @@ class DataBase {
   }
 };
 
+
+/**
+ * DataBaseSchema Class
+ * @author Ingo Andelhofs
+ * 
+ * A simple class that makes it possible to create simple database schema's. 
+ * You can export them to your Database class.
+ */
 class DataBaseSchema {
   private static $database_schemas;
 
