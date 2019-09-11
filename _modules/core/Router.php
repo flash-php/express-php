@@ -125,8 +125,9 @@ class RouterReqArg {
   public $db;
 
   public function __construct($param_array) {
-    $this->body = GetNullObj::create($_GET);
-    $this->body_array = &$_GET;
+    // TODO: Verander $_REQUEST door $_POST, $_GET (, $_COOKIE)
+    $this->body = GetNullObj::create($_REQUEST);
+    $this->body_array = &$_REQUEST;
     $this->params = GetNullObj::create($param_array);
     $this->db = new DataBase();
   }
@@ -150,10 +151,6 @@ class RouterResArg {
     echo '</pre>';
   }
 
-  public function render($path) {
-    echo "Render path: $path";
-  }
-
   public function view($path, $data=[]) {
     $full_path = "./views/$path.php";
 
@@ -166,6 +163,10 @@ class RouterResArg {
     else {
       echo "Please check your view folder to make sure u created a view called '$path'.";
     }
+  }
+
+  public function render($path, $data=[]) {
+    $this->view($path, $data);
   }
 
   public function js_log($data) {
