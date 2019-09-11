@@ -1,5 +1,14 @@
 <?php
 
+/**
+ * Simple Templating Engine Class
+ * @author Ingo Andelhofs
+ * 
+ * A class that handles compiling files in the view folder and rendering them.
+ * This class can handle simple variables and templating. More soon... 
+ * 
+ * @uses /
+ */
 class STE {
   public static function compile_render($view_path, $view_data) {
     // echo 'STE: Compiling and rendering view...';
@@ -37,8 +46,6 @@ class STE {
       $view_str = self::_compile_extends($view_str, $view_lines);
     }
     
-
-
     return $view_str;
   }
 
@@ -82,6 +89,14 @@ class STE {
 };
 
 
+/**
+ * Component Class
+ * @author Ingo Andelhofs
+ * 
+ * This simple class handles components with simple variables.
+ * 
+ * @uses STE class
+ */
 class Component {
   public static $components_path = './components/';
   public static $view_path = './views/';

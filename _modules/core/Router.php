@@ -1,5 +1,14 @@
 <?php
 
+/**
+ * Router Class
+ * @author Ingo Andelhofs
+ * 
+ * A class that lets u create new RESTful routes and also routes these so u can access them.
+ * 
+ * @uses RouterReqArg class
+ * @uses RouterResArg class
+ */
 class Router {
   // Variables
   private $route_name;
@@ -138,6 +147,15 @@ class Router {
 };
 
 
+/**
+ * RouterRequestObject Class
+ * @author Ingo Andelhofs
+ * 
+ * A class that handles all the Request functionalities.
+ * 
+ * @uses DataBase class
+ * @uses GetNullObj
+ */
 class RouterReqArg {
   public $body;
   public $body_array;
@@ -153,6 +171,15 @@ class RouterReqArg {
   }
 };
 
+
+/**
+ * RouterResponseObject Class
+ * @author Ingo Andelhofs
+ * 
+ * A class that handles all the Response functionalities.
+ * 
+ * @uses Router class (template_engine functions)
+ */
 class RouterResArg {
   // Writing to the screen
   public function send($data) {

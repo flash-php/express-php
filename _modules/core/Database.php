@@ -5,6 +5,10 @@
  * @author Ingo Andelhofs
  * 
  * A MySQL Database class that makes it easier to query, get, create, update, delete, duplicate and more.
+ * 
+ * @uses Constants -> (DB_DRIVER, DB_HOST, DB_PORT, DB_NAME, DB_USERNAME, DB_PASSWORD)
+ * @uses DataBaseSchema class
+ * @uses PDO class
  */
 class DataBase {
   // Variables
@@ -99,7 +103,7 @@ class DataBase {
     echo '<pre>';
     print_r($parameters);
     echo '</pre>';
-    // return;
+    return;
     // DEVELOPING
 
 
@@ -231,7 +235,7 @@ class DataBaseSchema {
   }
 
   public static function export() {
-    return self::$database_schemas;
     // Return: ['table_name' => ['col1' => PDO::PARAM_INT, ...]]
+    return self::$database_schemas;
   }
 };
