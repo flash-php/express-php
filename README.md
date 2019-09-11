@@ -129,7 +129,8 @@ $route->get('/index', function($req, $res) {
 You can see this structure by using the `Router::print_all()` function.  
 > Inside the ./routes/home.php file.
 ```php
-// When u create a Router, it is added to Router::$routes_data. All the information about the route is saved there.
+// When u create a Router, it is added to Router::$routes_data. 
+// All the information about the route is saved there.
 $home = new Router('/home');
 $home->get('/index/:id', function($req, $res) {
   // Code here...
