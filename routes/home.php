@@ -1,7 +1,13 @@
-<?php global $home;
+<?php 
+
+// Routes
+global $home;
+global $auth;
+
 
 $home->get('/index', function($req, $res) {
 
+  // $res->send('index');
   
   // $req->db->update('User', ['id' => 24], ['firstname' => 'Ingoooo']);
 
@@ -14,4 +20,9 @@ $home->get('/redirect_test', function($req, $res) {
   // $res->send('Redirect succesfull');
   $res->redirect_back();
   // $res->send_r($_SERVER);
+});
+
+
+$auth->get('/index', function($req, $res) {
+
 });
