@@ -17,6 +17,15 @@ Comming soon...
 The biggest part of FlashPHP is its Router. U can easily create RESTful routes and use their given `$request` and `$response` objects to handle basic route functionalities. 
 
 ### Initialization
+> ./_modules/config/config.php
+```php
+// Here we set the template_engine to STE. 
+// For the rest, we use the default configurations.
+Router::config([
+  'template_engine' => 'STE'
+]);
+```
+> index.php
 ```php
 // Create a base router. In this case the home route.
 $home = new Router('/home');
@@ -28,31 +37,26 @@ $home->get('/index', function ($request, $response) {
   // Code for route here...
 });
 
-// Include routes, models. You can access the $home route there.
-include_all('./routes'); 
-include_all('./models');
-
-// You can set configs for your router before u start it. 
-// For example u can set the templating engine. The STE template engine comes with '/_modules'.
-Router::set_template_engine('STE');
-
 // Start the router. It is IMPORTANT that you start the Router at the end.
 Router::start();
 ```
 
-### Config
+### Default config
 ```php
-$options = [
-  'mode' => Router::array  [Router::object, ...
-
-  'components_path' => './components/'
-  'model_path' => './models/',
-  'router_path' => './routes/',
-  'view_path' => './views/',
-  'home_route' => '/home/index'
+$conf = [
+  'path' => [
+    'components' => './components',  
+    'templates' => './templates',  
+    'models' => './models',  
+    'routes' => './components',  
+    'views' => './views',  
+  ],
+  'default_route' => 'home',
+  'default_method' => 'index',
+  'template_engine' => null
 ];
 
-Router::config($options);
+Router::config($conf);
 ```
 
 ### Request methods
@@ -127,7 +131,7 @@ $route->get('/index', function($req, $res) {
 
 ### Internal working
 You can see this structure by using the `Router::print_all()` function.  
-> Inside the ./routes/home.php file.
+> ./routes/home.php
 ```php
 // When u create a Router, it is added to Router::$routes_data. 
 // All the information about the route is saved there.
@@ -137,7 +141,7 @@ $home->get('/index/:id', function($req, $res) {
 });
 ```
 
-> Inside of the ./_modules/core/Router.php file.
+> ./_modules/core/Router.php
 ```php
 Router::$routes_data = [
     'home' => ['index' => ['get' => ['callback' => function($request, $response) {},
@@ -152,9 +156,9 @@ Router::$routes_data = [
 
 ## Database Usage
 ### Initialization
-It is simple to create a new DataBase, you just need to add some constants to your config.php file. These constants are the default arguments.
+It is simple to create a new DataBase, you just need to add some constants to your config.php file. These constants are the default arguments. 
+> ./_modules/config/config.php
 ```php
-//> config.php
 define('DB_DRIVER', 'mysql');
 define('DB_HOST', 'localhost');
 define('DB_PORT', '3306');
@@ -271,21 +275,24 @@ $db->duplicateUserById(5);
 
 ## Simple Template Engine (STE) Usage
 ### A simple example
+> index.php or ./_modules/config/config.php
 ```php
-//-- index.php
 Router::set_template_engine('STE');
+```
 
-//-- ./routes/home.php
+> ./routes/home.php
+```php
 $home->get('/index', function($req, $res) {
   $res->view('home/homepage', ['title' => 'Welcome to our page.']);
 });
 ```
+> ./views/home/homepage.php
 ```html
-<!-- ./views/home/homepage.php -->
 <h1><?= $title ?></h1>
 ```
+
+> ./views/home/homepage2.php
 ```html
-<!-- ./views/home/homepage.php -->
 <!-- coming soon... -->
 <h1>{{ $title }}</h1>
 
@@ -296,8 +303,8 @@ $home->get('/index', function($req, $res) {
 
 ### Templates
 An easy way to include header, footer, scripts, ... into your main file.
+> ./templates/TemplateName.php
 ```html
-<!-- ./templates/TemplateName.php -->
 <html> 
   <head>
     @section scripts
@@ -307,8 +314,8 @@ An easy way to include header, footer, scripts, ... into your main file.
   </body>  
 </html>
 ```
+> ./views/home/template.php
 ```html
-<!-- ./views/home/template.php -->
 @extends TemplateName
 
 @section scripts
@@ -322,8 +329,6 @@ An easy way to include header, footer, scripts, ... into your main file.
 ```php
 Component::render('banner', ['title' => 'Welcome']);
 ```
-
-
 
 ## In Development
 ### Middleware & Auth
