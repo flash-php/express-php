@@ -4,11 +4,14 @@
  * Include all files in a directory (not recursive)
  */
 function include_all($path) {
-  foreach (glob("$path/*.php") as $filename)
-    include $filename; 
+  foreach (glob("$path/*") as $filename) {
+    include_once $filename; 
+  }
 }
 function include_all_r($path) {
-  // Code here ... (recursive)
+  foreach(glob("$path/*") as $filename) {
+    is_dir($filename) ? include_all_r($filename) : include_once($filename);
+  }
 }
 
 
