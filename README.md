@@ -129,6 +129,19 @@ $route->get('/index', function($req, $res) {
 });
 ```
 
+### Middleware & Auth
+```php
+$auth->post('/admin_only', ['Auth::is_user_logged_in()', 'Auth::is_user("admin")'], function($req, $res) {
+  // Code for admin only here... 
+});
+```
+```php
+$auth->post('/admin_only', function($req, $res) {
+  $res->middleware([Auth::is_user_logged_in(), Auth::is_user('Admin')]);
+  // Code for admin only here... 
+});
+```
+
 ### Internal working
 You can see this structure by using the `Router::print_all()` function.  
 > ./routes/home.php
@@ -349,19 +362,6 @@ Supported attributes: `href`, `data-req`, `data-body` (except for DELETE) and `d
 ```
 
 ## In Development
-### Middleware & Auth
-```php
-$auth->post('/admin_only', [Auth::is_user_logged_in(), Auth::is_user('Admin')], function($req, $res) {
-  // Code for admin only here... 
-});
-```
-```php
-$auth->post('/admin_only', function($req, $res) {
-  $res->middleware([Auth::is_user_logged_in(), Auth::is_user('Admin')]);
-  // Code for admin only here... 
-});
-```
-
 ### Sessions and cookies
 ```php
 $home->get('/index', function($req, $res) {

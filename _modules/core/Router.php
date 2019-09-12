@@ -28,10 +28,10 @@ class Router {
   }
 
   // Functions
-  public function get($method, $callback) { $this->req($method, 'GET', $callback); }
-  public function post($method, $callback) { $this->req($method, 'POST', $callback); }
-  public function put($method, $callback) { $this->req($method, 'PUT', $callback); }
-  public function delete($method, $callback) { $this->req($method, 'DELETE', $callback); }
+  public function get($method, $middleware_callback, $callback=null) { $this->req($method, 'GET', $middleware_callback, $callback); }
+  public function post($method, $middleware_callback, $callback=null) { $this->req($method, 'POST', $middleware_callback, $callback); }
+  public function put($method, $middleware_callback, $callback=null) { $this->req($method, 'PUT', $middleware_callback, $callback); }
+  public function delete($method, $middleware_callback, $callback=null) { $this->req($method, 'DELETE', $middleware_callback, $callback); }
 
   public static function start() {
     if (!self::$conf_set) self::config();
@@ -99,7 +99,7 @@ class Router {
   }
   
   // Helper functions
-  private function req($method, $request_method, $callback) {
+  private function req($method, $request_method, $middleware_callback, $callback=null) {
     // Split up method to get parameters (parameters -> routes_data)
     $method = self::parse_url($method);
     $method_name = $method[0] ?? self::$conf_method;
@@ -107,15 +107,33 @@ class Router {
 
     // Create routes_data
     $full_route = &self::$routes_data[$this->route_name][$method_name][$request_method];
+
+    // Check for middleware
+    if (is_null($callback)) {
+      $callback = $middleware_callback;
+      $full_route['middleware'] = [];
+    }
+    else {
+      $full_route['middleware'] = $middleware_callback;
+    } 
+
     $full_route['callback'] = $callback;
     $full_route['params'] = array_map(function($param) { return trim($param, ':'); }, $params);
     $full_route['path'] = '/'.$this->route_name.'/'.$method_name;
     $full_route['request_method'] = $request_method;
-    $full_route['options'] = [];
   }
 
+  /**
+   * @todo change (middleware) redirect() to end().
+   */
   private static function activate($route, $method, $req_method='GET', $params=[]) {
     $full_route = &self::$routes_data[$route][$method][$req_method];
+
+    // Middleware
+    foreach($full_route['middleware'] as $middleware) {
+      if (!eval("return $middleware;")) // call_user_func($middleware)
+        (new RouterResArg)->redirect('/'.self::$conf_route.'/'.self::$conf_method);
+    }
 
     $params = self::create_param_array($params, $full_route['params']);
     $full_route['callback'](new RouterReqArg($params), new RouterResArg);
@@ -306,23 +324,23 @@ class RouterReqArg {
  */
 class RouterResArg {
   // Writing to the screen
-  public function send($data) {
+  public function send($data='') {
     echo $data;
   }
   
-  public function send_r($data) {
+  public function send_r($data='') {
     echo "<pre>";
     print_r($data);
     echo "</pre>";
   }
 
-  public function json($data) {
+  public function json($data=[]) {
     echo '<pre>';
     echo json_encode($data);
     echo '</pre>';
   }
 
-  public function view($path, $data=[]) {
+  public function view($path='home/index', $data=[]) {
     $full_path = "./views/$path.php";
 
     if (Router::is_template_engine_set()) {
@@ -336,11 +354,11 @@ class RouterResArg {
     }
   }
 
-  public function render($path, $data=[]) {
+  public function render($path='home/index', $data=[]) {
     $this->view($path, $data);
   }
 
-  public function js_log($data) {
+  public function js_log($data='') {
     echo "<script>";
     echo "console.log('$data');";
     echo "</script>";
@@ -351,10 +369,13 @@ class RouterResArg {
   public function end($data='') {
     die($data);
   }
+  public function middleware($middleware_array, $redirect_route='/home/index') {
+    array_product($middleware_array) ?: $this->redirect($redirect_route);
+  }
 
 
   // Redirecting
-  public function redirect($to) {
+  public function redirect($to='/home/index') {
     header("Location: $to");
     $this->end("Redirecting to: $to...");
   }

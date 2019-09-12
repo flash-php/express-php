@@ -4,6 +4,13 @@
 global $home;
 global $auth;
 
+class Auth {
+  public static function is_user_logged_in($name) {
+    if ($name === 'a') return true;
+    return false;
+  }
+};
+
 
 $home->get('/index', function($req, $res) {
   // $res->send_r($_GET);
@@ -16,7 +23,7 @@ $home->post('/index', function($req, $res) {
   $res->send_r($req->body);
 });
 
-$home->put('/index', function($req, $res) {
+$home->put('/index', ["Auth::is_user_logged_in('ingo')"], function($req, $res) {
   $res->send('PUT');
   $res->send_r($req->body);
 });
