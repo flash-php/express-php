@@ -330,6 +330,24 @@ An easy way to include header, footer, scripts, ... into your main file.
 Component::render('banner', ['title' => 'Welcome']);
 ```
 
+## JS Helpers
+### RESThelper.js
+Support for REST forms.  
+Supported methods: `GET`, `POST`, `PUT` and `DELETE`.
+```html
+<form action='/home/index' method='PUT'>
+  <!-- Input fields -->
+  <input type='submit' value='Click'>
+</form>
+```
+
+Support for REST links.  
+Supported attributes: `href`, `data-req`, `data-body` (except for DELETE) and `data-async` (coming soon...).
+```html
+<a href='/homs/index' data-req='PUT' data-body='{"name": "Ingo Andelhofs", "id": 5}'>Link to somewehere.</a>
+<a href='/homs/index' data-req='DELETE' data-async='true'>Click and async.</a>
+```
+
 ## In Development
 ### Middleware & Auth
 ```php
@@ -358,3 +376,4 @@ $home->get('/index', function($req, $res) {
     $req->session->update();
 });
 ```
+
