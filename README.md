@@ -296,7 +296,7 @@ $home->get('/index', function($req, $res) {
 <!-- coming soon... -->
 <h1>{{ $title }}</h1>
 
-@if($title === 'Welcome')
+@if($title === 'Welcome'):
   // code here ...
 @endif
 ```

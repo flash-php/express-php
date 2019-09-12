@@ -237,7 +237,12 @@ class Router {
   }  
 
   private static function get_request_method() {
-    return strtoupper($_SERVER['REQUEST_METHOD']);
+    $request_method = $_SERVER['REQUEST_METHOD'];
+
+    if ($request_method !== 'POST')
+      return $request_method;
+      
+    return $_POST['REQUEST_METHOD'] ?? 'POST';
   }
 };
 
@@ -249,20 +254,44 @@ class Router {
  * A class that handles all the Request functionalities.
  * 
  * @uses DataBase class
- * @uses GetNullObj
+ * @uses GetNullObj / AdvanvcedNullObject
  */
 class RouterReqArg {
   public $body;
-  public $body_array;
   public $params;
+  
   public $db;
 
+  public $session;
+  public $cookie;
+
   public function __construct($param_array) {
-    // TODO: Verander $_REQUEST door $_POST, $_GET (, $_COOKIE)
-    $this->body = GetNullObj::create($_REQUEST);
-    $this->body_array = &$_REQUEST;
-    $this->params = GetNullObj::create($param_array);
+    $this->body = new AdvancedNullObject($this->get_body_array());
+    $this->params = new AdvancedNullObject($param_array);
+
     $this->db = new DataBase();
+
+    $this->session = new AdvancedNullObject($_SESSION);
+    
+  }
+
+  private function &get_body_array() {
+    switch ($_SERVER['REQUEST_METHOD']) {
+      case 'GET':
+        return $_GET;
+        break;
+      case 'POST':
+        unset($_POST['REQUEST_METHOD']);
+        return $_POST;
+        break;
+      case 'PUT':
+        parse_str(file_get_contents('php://input'), $_PUT);
+        return $_PUT;
+        break;
+      default:
+        return [];
+        break;
+    }
   }
 };
 

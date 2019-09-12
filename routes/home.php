@@ -6,23 +6,21 @@ global $auth;
 
 
 $home->get('/index', function($req, $res) {
+  // $res->send_r($_GET);
 
-  // $res->send('index');
-  
-  // $req->db->update('User', ['id' => 24], ['firstname' => 'Ingoooo']);
+  $res->view('request/putform');
+});
 
-  // $res->view('home/index', ['name' => 'Ingo']);
-  // $res->view('home/template', ['name' => 'Ingo']);
+$home->post('/index', function($req, $res) {
+  $res->send('POST');
+});
+
+$home->put('/index', function($req, $res) {
+  $res->send('PUT');
 
 });
 
-$home->get('/redirect_test', function($req, $res) {
-  // $res->send('Redirect succesfull');
-  $res->redirect_back();
-  // $res->send_r($_SERVER);
-});
-
-
-$auth->get('/index', function($req, $res) {
-
+$home->delete('/index/:id', function($req, $res) {
+  $res->send_r($_POST);
+  // $res->send_r($req->params);
 });

@@ -18,6 +18,10 @@ class GetNullObj {
 class AdvancedNullObject {
   public $assoc_array;
 
+  public function __debugInfo() {
+    return $this->assoc_array;
+  }
+
   public function __construct(&$assoc_array = null) {
     $this->assoc_array = &$assoc_array;
   }
