@@ -341,6 +341,10 @@ An easy way to include header, footer, scripts, ... into your main file.
 ### Components
 ```php
 Component::render('banner', ['title' => 'Welcome']);
+
+// Or
+
+Component::banner(['title' => 'Welcome']);
 ```
 
 ## JS Helpers

@@ -106,3 +106,47 @@ class Component {
   }
 };
 
+
+// IF ELSE ELSEIF ENDIF PARSING
+// $string = '
+// @if(true): 
+//   echo "test";
+// @else( expression() ):
+// @elif( expression() ):
+// @endif';
+// $pattern = ['/(@if\()/', '/(@else\()/', '/(@elif\()|(@else if\()/', '/(@endif)/', '/(\):)/'];
+// $replacement = ['?php if(', '} else(', '} else if(', '} ? >', ') {'];
+// echo '<pre>';
+// echo preg_replace($pattern, $replacement, $string) . '<br>';
+// echo '</pre>';
+
+
+// UNIQUE CODE PREFIXING
+// $string = '( $hello ) tree';
+// $pattern = '/(\$)/';
+// $replacement = '$$'.uniqid().'_';
+// echo '<pre>';
+// echo preg_replace($pattern, $replacement, $string) . '<br>';
+// echo '</pre>';
+
+
+// UNIQUE CODE PREFIXING unique_id only
+// $uniqid = uniqid();
+// $string = '( $hello ) tree';
+// $pattern = '/(\$\w*)/';
+// $replacement = "$$$uniqid";
+// echo '<pre>';
+// echo preg_replace($pattern, $replacement, $string) . '<br>';
+// echo '</pre>';
+
+
+// $string = '{{ $hello }} tree';
+// $pattern = ['/(\{\{)/', '/(\}\})/'];
+// $replacement = ['>?= htmlspecialchars(', ') ?<'];
+// echo '<pre>';
+// echo preg_replace($pattern, $replacement, $string) . '<br>';
+// echo '</pre>';
+
+
+// -> PARSE (pefix_vars, template, IF*, direct_variable_print)
+// -> REMOVE EXTRA <? php  &  ? > 
