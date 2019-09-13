@@ -144,6 +144,8 @@ class Auth {
   public static function is_user($param) {
     return function() use($param) {
       // Code here... 
+
+      // Comming soon... (true, false)
       return Middleware::next();
       return Middleware::block();
     };
@@ -417,5 +419,23 @@ $req->file->extension();
 $filename = $req->file->store('./public/images');
 $filename = $req->file->storeAs('./public/images', 'filename.jpg'); // filename -> autocomplete extention
 
+// Downloading
+$res->download($path, $name);
+$res->download_and_delete($path, $name);
+```
 
+### Validation
+> in $route_callback($req, $res)
+```php
+$req->validate();
+$req->body()->validate();
+```
+
+### Flash messages
+> in $route_callback($req, $res)
+```php
+$res->flash($name, $message);
+```
+```php
+Component::flash_message(); 
 ```
