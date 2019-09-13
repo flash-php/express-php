@@ -2,6 +2,15 @@
 Created by Ingo Andelhofs  
 Student at UHasselt (2019)
 
+## Table of Contents
+1. [Installation](#Installation)
+2. [Router Usage](#Router-Usage)
+3. [Database Usage](#Database-Usage)
+3. [Simple Template Engine (STE) Usage](#Simple-Template-Engine-(STE)-Usage)
+3. [JavaScript Helpers](#JavaScript-Helpers)
+3. [In Development](#In-Development)
+
+
 ## Installation
 ### Simple dowload & require
 To start using FlashPHP, u first need to add the `/_modules` folder to your project.  
@@ -131,13 +140,18 @@ $route->get('/index', function($req, $res) {
 
 ### Middleware & Auth
 ```php
-$auth->post('/admin_only', ['Auth::is_user_logged_in()', 'Auth::is_user("admin")'], function($req, $res) {
-  // Code for admin only here... 
-});
+class Auth {
+  public static function is_user($param) {
+    return function() use($param) {
+      // Code here... 
+      return Middleware::next();
+      return Middleware::block();
+    };
+  }
+};
 ```
 ```php
-$auth->post('/admin_only', function($req, $res) {
-  $res->middleware([Auth::is_user_logged_in(), Auth::is_user('Admin')]);
+$auth->post('/admin_only', [Auth::is_user_logged_in(), Auth::is_user("admin")], function($req, $res) {
   // Code for admin only here... 
 });
 ```
@@ -347,7 +361,7 @@ Component::render('banner', ['title' => 'Welcome']);
 Component::banner(['title' => 'Welcome']);
 ```
 
-## JS Helpers
+## JavaScript Helpers
 ### RESThelper.js
 Support for REST forms.  
 Supported methods: `GET`, `POST`, `PUT` and `DELETE`.
@@ -381,3 +395,27 @@ $home->get('/index', function($req, $res) {
 });
 ```
 
+### File handeling
+> in $route_callback($req, $res)
+```php
+// check for files
+$req->hasFiles();
+
+// returns uploaded file(s)
+// returns uploaded photo(s)
+$req->file; 
+$req->files;
+$req->photo;
+$req->photos;
+
+// file info
+$req->file->isValid();
+$req->file->path();
+$req->file->extension();
+
+// file storing
+$filename = $req->file->store('./public/images');
+$filename = $req->file->storeAs('./public/images', 'filename.jpg'); // filename -> autocomplete extention
+
+
+```
