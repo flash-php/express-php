@@ -131,8 +131,8 @@ class Router {
 
     // Middleware
     foreach($full_route['middleware'] as $middleware) {
-      if (!eval("return $middleware;")) // call_user_func($middleware)
-        (new RouterResArg)->redirect('/'.self::$conf_route.'/'.self::$conf_method);
+      if (!$middleware())
+        (new RouterResArg)->end("Middleware blocks you from this route.");
     }
 
     $params = self::create_param_array($params, $full_route['params']);
@@ -368,9 +368,6 @@ class RouterResArg {
   // Ending the program
   public function end($data='') {
     die($data);
-  }
-  public function middleware($middleware_array, $redirect_route='/home/index') {
-    array_product($middleware_array) ?: $this->redirect($redirect_route);
   }
 
 
