@@ -4,7 +4,7 @@
 global $home;
 global $auth;
 
-class Auth {
+class Auth2 {
   public static function is_user_logged_in($name='') {
     // Middleware
     return function() use($name) {
@@ -15,9 +15,12 @@ class Auth {
 };
 
 
-$home->get('/index', function($req, $res) {
+$home->get('/index', function(Request $req, Response $res) {
+
+//  $req->db->create();
+
   // $res->send_r($_GET);
-  // $res->view('request/putform');
+   $res->view('request/index');
 });
 
 $home->post('/index', function($req, $res) {
@@ -25,7 +28,7 @@ $home->post('/index', function($req, $res) {
   $res->send_r($req->body);
 });
 
-$home->put('/index', [Auth::is_user_logged_in('b')], function($req, $res) {
+$home->put('/index', [Auth2::is_user_logged_in('b')], function($req, $res) {
   $res->send('PUT');
   $res->send_r($req->body);
 });
