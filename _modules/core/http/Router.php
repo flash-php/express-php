@@ -6,8 +6,8 @@
  * 
  * A class that lets u create new RESTful routes and also routes these so u can access them.
  * 
- * @uses RouterReqArg class
- * @uses RouterResArg class
+ * @uses Request class
+ * @uses Response class
  */
 class Router {
   // Variables
@@ -132,11 +132,11 @@ class Router {
     // Middleware
     foreach($full_route['middleware'] as $middleware) {
       if (!$middleware())
-        (new RouterResArg)->end("Middleware blocks you from this route.");
+        (new Response)->end("Middleware blocks you from this route.");
     }
 
     $params = self::create_param_array($params, $full_route['params']);
-    $full_route['callback'](new RouterReqArg($params), new RouterResArg);
+    $full_route['callback'](new Request($params), new Response);
   }
 
   // Route suggestion
@@ -261,129 +261,5 @@ class Router {
       return $request_method;
       
     return $_POST['REQUEST_METHOD'] ?? 'POST';
-  }
-};
-
-
-/**
- * RouterRequestObject Class
- * @author Ingo Andelhofs
- * 
- * A class that handles all the Request functionalities.
- * 
- * @uses DataBase class
- * @uses GetNullObj / AdvanvcedNullObject
- */
-class RouterReqArg {
-  public $body;
-  public $params;
-  
-  public $db;
-
-  public $session;
-  public $cookie;
-
-  public function __construct($param_array) {
-    $this->body = new AdvancedNullObject($this->get_body_array());
-    $this->params = new AdvancedNullObject($param_array);
-
-    $this->db = new DataBase();
-
-    $this->session = new AdvancedNullObject($_SESSION);
-    
-  }
-
-  private function &get_body_array() {
-    switch ($_SERVER['REQUEST_METHOD']) {
-      case 'GET':
-        return $_GET;
-        break;
-      case 'POST':
-        unset($_POST['REQUEST_METHOD']);
-        return $_POST;
-        break;
-      case 'PUT':
-        parse_str(file_get_contents('php://input'), $_PUT);
-        return $_PUT;
-        break;
-      default:
-        return [];
-        break;
-    }
-  }
-};
-
-
-/**
- * RouterResponseObject Class
- * @author Ingo Andelhofs
- * 
- * A class that handles all the Response functionalities.
- * 
- * @uses Router class (template_engine functions)
- */
-class RouterResArg {
-  // Writing to the screen
-  public function send($data='') {
-    echo $data;
-  }
-  
-  public function send_r($data='') {
-    echo "<pre>";
-    print_r($data);
-    echo "</pre>";
-  }
-
-  public function json($data=[]) {
-    echo '<pre>';
-    echo json_encode($data);
-    echo '</pre>';
-  }
-
-  public function view($path='home/index', $data=[]) {
-    $full_path = "./views/$path.php";
-
-    if (Router::is_template_engine_set()) {
-      Router::compile_render_template($path, $data);
-    }
-    else if (file_exists($full_path)) {
-      include_once($full_path);
-    }
-    else {
-      echo "Please check your view folder to make sure u created a view called '$path'.";
-    }
-  }
-
-  public function render($path='home/index', $data=[]) {
-    $this->view($path, $data);
-  }
-
-  public function js_log($data='') {
-    echo "<script>";
-    echo "console.log('$data');";
-    echo "</script>";
-  }
-
-
-  // Ending the program
-  public function end($data='') {
-    die($data);
-  }
-
-
-  // Redirecting
-  public function redirect($to='/home/index') {
-    header("Location: $to");
-    $this->end("Redirecting to: $to...");
-  }
-
-  public function redirect_back() {
-    $this->redirect($_SERVER['HTTP_REFERER']); // $this->redirect('javascript://history.go(-1)');
-  }
-
-
-  // File handeling 
-  public function download() {
-    // Code here...
   }
 };

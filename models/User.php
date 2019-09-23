@@ -1,7 +1,7 @@
 <?php
 
 // Database schema
-new DataBaseSchema('User', [
+new DatabaseSchema('User', [
   'id' => PDO::PARAM_INT,
   'contact_id' => PDO::PARAM_INT,
   'firstname' => PDO::PARAM_STR,
@@ -11,6 +11,6 @@ new DataBaseSchema('User', [
 
 
 // Extended functions
-DataBase::new('getAllUsers', function($db) {
+Database::new('getAllUsers', function($db) {
   return $db->query("SELECT * FROM User;");
 });

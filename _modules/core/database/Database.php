@@ -7,10 +7,10 @@
  * A MySQL Database class that makes it easier to query, get, create, update, delete, duplicate and more.
  * 
  * @uses Constants -> (DB_DRIVER, DB_HOST, DB_PORT, DB_NAME, DB_USERNAME, DB_PASSWORD)
- * @uses DataBaseSchema class
+ * @uses DatabaseSchema class
  * @uses PDO class
  */
-class DataBase {
+class Database {
   // Variables
   protected $dbh = null;
   protected $db_schemas = [];
@@ -215,7 +215,7 @@ class DataBase {
     return join($separator, $where_array);
   }
   private function import_schemas() {
-    self::$database_schemas = DataBaseSchema::export();
+    self::$database_schemas = DatabaseSchema::export();
   }
 };
 
@@ -227,7 +227,7 @@ class DataBase {
  * A simple class that makes it possible to create simple database schema's. 
  * You can export them to your Database class.
  */
-class DataBaseSchema {
+class DatabaseSchema {
   private static $database_schemas;
 
   public function __construct($table_name, $schema) {

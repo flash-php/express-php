@@ -5,11 +5,15 @@ include './_modules/helpers/helpers.php';
 include './_modules/helpers/GetNullObj.php';
 
 // Core files
-include './_modules/core/Router.php';
-include './_modules/core/Database.php';
+include './_modules/core/http/Router.php';
+include './_modules/core/http/Route.php';
+include './_modules/core/http/Response.php';
+include './_modules/core/http/Request.php';
 
-// Templating engines
-include './_modules/engines/STE.php';
+
+include './_modules/core/database/Database.php';
+include './_modules/core/engines/STE.php';
+
 
 // Config
 include './_modules/config/config.php';
