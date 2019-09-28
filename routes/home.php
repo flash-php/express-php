@@ -17,6 +17,8 @@ class Auth2 {
 
 $home->get('/index', function(Request $req, Response $res) {
 
+  $req->body->validate();
+
 //  $req->db->create();
 
   // $res->send_r($_GET);
