@@ -11,6 +11,6 @@ new DatabaseSchema('User', [
 
 
 // Extended functions
-Database::new('getAllUsers', function($db) {
+Database::new('getAllUsers', function(Database $db) {
   return $db->query("SELECT * FROM User;");
 });

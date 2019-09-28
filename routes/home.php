@@ -6,6 +6,7 @@ global $auth;
 
 $home->get('/index', [AuthMiddleware::is_user_logged_in('a')],  function(Request $req, Response $res) {
 
+
 //  $res->send("<h1>Hello</h1>");
 
 //  $req->body->validate();
@@ -17,6 +18,8 @@ $home->get('/index', [AuthMiddleware::is_user_logged_in('a')],  function(Request
 });
 
 $home->post('/index', function($req, $res) {
+
+
   $res->send('POST');
   $res->send_r($req->body);
 });

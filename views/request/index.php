@@ -9,7 +9,7 @@
 <body>
 
   <h1>Safe Image Urls</h1><hr>
-  <img src="/files/image/img.jpg" alt="" width="250px">
+  <img src="/files/image/profile-picture.jpeg" alt="" width="250px">
   <br>
 
   <h1>PUT Form</h1><hr>
@@ -22,7 +22,7 @@
 
   <h1>FILE Form</h1><hr>
   <form action="/files/upload" method="POST" enctype="multipart/form-data">
-      <input type="file" name="test" placeholder="file upload">
+      <input type="file" name="profile_image" placeholder="file upload">
       <input type="submit" value="Go">
   </form>
   <br>

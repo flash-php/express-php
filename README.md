@@ -158,6 +158,28 @@ $auth->post('/admin_only', [Auth::is_user_logged_in(), Auth::is_user("admin")], 
 });
 ```
 
+### File handeling
+> in $route_callback($req, $res)
+```php
+// check for files
+$req->hasFiles();
+
+// returns uploaded files
+$req->files;
+
+// file info
+$req->files->profile_picture->extension;
+$req->files->upload->type;
+$req->files->image->...;
+
+// file storing
+$filename = $req->files->profile_picture->store('public/images');
+$filename = $req->files->profile_picture->storeAs('public/images', 'filename'); // filename.jpeg -> autocomplete extention
+
+// Downloading
+$res->download($path);
+```
+
 ### Internal working
 You can see this structure by using the `Router::print_all()` function.  
 > ./routes/home.php
@@ -395,33 +417,6 @@ $home->get('/index', function($req, $res) {
     $req->session->read();
     $req->session->update();
 });
-```
-
-### File handeling
-> in $route_callback($req, $res)
-```php
-// check for files
-$req->hasFiles();
-
-// returns uploaded file(s)
-// returns uploaded photo(s)
-$req->file; 
-$req->files;
-$req->photo;
-$req->photos;
-
-// file info
-$req->file->isValid();
-$req->file->path();
-$req->file->extension();
-
-// file storing
-$filename = $req->file->store('./public/images');
-$filename = $req->file->storeAs('./public/images', 'filename.jpg'); // filename -> autocomplete extention
-
-// Downloading
-$res->download($path, $name);
-$res->download_and_delete($path, $name);
 ```
 
 ### Validation

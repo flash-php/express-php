@@ -2,16 +2,23 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b7abebb5-ee84-49f9-9aec-3baa610dd651" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/_modules/core/http/Response/Response.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/_modules/config/private/http.php" beforeDir="false" afterPath="$PROJECT_DIR$/_modules/config/private/http.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/_modules/core/engines/Component.php" beforeDir="false" afterPath="$PROJECT_DIR$/_modules/core/engines/Component.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/_modules/core/engines/EngineInterface.php" beforeDir="false" afterPath="$PROJECT_DIR$/_modules/core/engines/TemplateEngineStrategy.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/_modules/core/engines/STE.php" beforeDir="false" afterPath="$PROJECT_DIR$/_modules/core/engines/SimpleTemplatingEngine.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/_modules/core/http/Response.php" beforeDir="false" afterPath="$PROJECT_DIR$/_modules/core/http/Response.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/_modules/core/http/Router.php" beforeDir="false" afterPath="$PROJECT_DIR$/_modules/core/http/Router.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/_modules/helpers/Config.php" beforeDir="false" afterPath="$PROJECT_DIR$/_modules/helpers/Config.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_modules/config/private/config.php" beforeDir="false" afterPath="$PROJECT_DIR$/_modules/config/private/config.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_modules/config/private/file.php" beforeDir="false" afterPath="$PROJECT_DIR$/_modules/config/private/file.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_modules/core/files/FileHandler.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/_modules/core/files/FileUploadInfo.php" beforeDir="false" afterPath="$PROJECT_DIR$/_modules/core/files/FileUpload.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_modules/core/http/HttpException.php" beforeDir="false" afterPath="$PROJECT_DIR$/_modules/core/http/HttpException.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_modules/core/http/Request/Request.php" beforeDir="false" afterPath="$PROJECT_DIR$/_modules/core/http/Request/Request.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_modules/core/http/Request/RequestFileHandler.php" beforeDir="false" afterPath="$PROJECT_DIR$/_modules/core/http/Request/RequestFileHandler.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_modules/core/http/Response.php" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/_modules/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/_modules/index.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/models/User.php" beforeDir="false" afterPath="$PROJECT_DIR$/models/User.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/images/.htaccess" beforeDir="false" afterPath="$PROJECT_DIR$/private/.htaccess" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/files.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/files.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/routes/home.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/home.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/request/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/request/index.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -56,20 +63,20 @@
   <component name="PropertiesComponent">
     <property name="DatabaseDriversLRU" value="mysql" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/_modules/config/private" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/_modules/core/exceptions" />
     <property name="settings.editor.selected.configurable" value="preferences.editor" />
   </component>
   <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Users\Ingo Andelhofs\Documents\git\express-php\_modules\config\_" />
-      <recent name="C:\Users\Ingo Andelhofs\Documents\git\express-php" />
-      <recent name="C:\Users\Ingo Andelhofs\Documents\git\express-php\_modules\core\http\Request" />
-      <recent name="C:\Users\Ingo Andelhofs\Documents\git\express-php\_modules\deprecated" />
-      <recent name="C:\Users\Ingo Andelhofs\Documents\git\express-php\_modules\core\engines" />
-    </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\Ingo Andelhofs\Documents\git\express-php\_modules\config\private" />
       <recent name="C:\Users\Ingo Andelhofs\Documents\git\express-php\public\images" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Ingo Andelhofs\Documents\git\express-php\_modules\core\exceptions" />
+      <recent name="C:\Users\Ingo Andelhofs\Documents\git\express-php\_modules\core" />
+      <recent name="C:\Users\Ingo Andelhofs\Documents\git\express-php\_modules\core\http\Response" />
+      <recent name="C:\Users\Ingo Andelhofs\Documents\git\express-php\private" />
+      <recent name="C:\Users\Ingo Andelhofs\Documents\git\express-php\_modules\config\_" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -103,7 +110,7 @@
       <workItem from="1569662061832" duration="320000" />
       <workItem from="1569662397936" duration="179000" />
       <workItem from="1569662593333" duration="4676000" />
-      <workItem from="1569668109369" duration="6655000" />
+      <workItem from="1569668109369" duration="12747000" />
     </task>
     <task id="LOCAL-00001" summary="Added project to PHPStorm">
       <created>1569223424626</created>
@@ -154,7 +161,14 @@
       <option name="project" value="LOCAL" />
       <updated>1569670907746</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="Added strategy pattern for TemplateEngines and restructured Template Engine Code. Simple example file changes.">
+      <created>1569676604235</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1569676604235</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -181,6 +195,7 @@
     <MESSAGE value="Added better configuration support. Config::set(), Config::default() and better structure." />
     <MESSAGE value="Small changes in example code and file loaders. Moved NullObj to deprecated folder." />
     <MESSAGE value="Restructured files and folders. Moved/separated functionality to different files." />
-    <option name="LAST_COMMIT_MESSAGE" value="Restructured files and folders. Moved/separated functionality to different files." />
+    <MESSAGE value="Added strategy pattern for TemplateEngines and restructured Template Engine Code. Simple example file changes." />
+    <option name="LAST_COMMIT_MESSAGE" value="Added strategy pattern for TemplateEngines and restructured Template Engine Code. Simple example file changes." />
   </component>
 </project>

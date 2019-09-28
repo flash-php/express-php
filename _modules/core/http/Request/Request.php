@@ -18,7 +18,7 @@ class Request {
 
     public $session;
     public $cookie;
-    public $file;
+    public $files;
 
     public function __construct($param_array) {
         $this->body = new RequestBodyHandler();
@@ -28,5 +28,6 @@ class Request {
 
         $this->session = new AdvancedNullObject($_SESSION);
 
+        $this->files = new RequestFileHandler();
     }
 };

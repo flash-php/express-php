@@ -1,14 +1,14 @@
 <?php global $files;
 
 $files->get('/image/:path', function(Request $req, Response $res) {
-  FileHandler::returnImage("./public/images/{$req->params->path}");
+  $res->download('./private/images/' . $req->params->path);
 });
 
 
 
 $files->post('/upload', function(Request $req, Response $res) {
-    FileHandler::saveSingleImage('test', 'public/images/uploads/');
+//  $req->files->profile_image->store('private/images/');
+//  $req->files->profile_image->storeAs('private/images/', 'profile-picture');
 
-//    $res->storeImage('test', '');
-
+  echo $req->files->profile_image->extension;
 });
