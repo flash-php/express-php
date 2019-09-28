@@ -11,6 +11,9 @@ include './_modules/helpers/Config.php';
 include './_modules/core/exceptions/FlashPhpException.php';
 
 // Core: http files
+include './_modules/core/middleware/Middleware.php';
+
+// Core: http files
 include './_modules/core/http/Router.php';
 include './_modules/core/http/Route.php';
 include './_modules/core/http/Response/Response.php';
