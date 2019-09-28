@@ -30,15 +30,7 @@ class Response {
     public function view($path='home/index', $data=[]) {
         $full_path = "./views/$path.php";
 
-        if (Router::is_template_engine_set()) {
-            Router::compile_render_template($path, $data);
-        }
-        else if (file_exists($full_path)) {
-            include_once($full_path);
-        }
-        else {
-            echo "Please check your view folder to make sure u created a view called '$path'.";
-        }
+        Router::compile_render_template($path, $data);
     }
 
     public function render($path='home/index', $data=[]) {

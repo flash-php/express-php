@@ -109,7 +109,7 @@ class STE {
 // UNIQUE CODE PREFIXING
 // $string = '( $hello ) tree';
 // $pattern = '/(\$)/';
-// $replacement = '$$'.uniqid().'_';
+// $replacement = '$$'.uniqid().'private';
 // echo '<pre>';
 // echo preg_replace($pattern, $replacement, $string) . '<br>';
 // echo '</pre>';

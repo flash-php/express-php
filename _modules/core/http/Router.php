@@ -14,14 +14,6 @@ class Router {
   private $route_name;
   private static $routes_data = [];
 
-  // Config variables
-  private static $conf_set = false;
-  private static $conf_mode = 'NullObject'; // TODO: $req->body->uname, $req->body['uname'].
-  private static $conf_path;
-  private static $conf_route;
-  private static $conf_method;
-  private static $conf_template_engine;
-
   // Constructor
   public function __construct($route_name) {
     $this->route_name = trim($route_name, '/');
@@ -34,16 +26,15 @@ class Router {
   public function delete($method, $middleware_callback, $callback=null) { $this->req($method, 'DELETE', $middleware_callback, $callback); }
 
   public static function start() {
-    if (!self::$conf_set) self::config();
-    self::include_config_paths();
+    self::include_route_folders();
 
     $_GET['url'] ?? die("U forgot to add '?url=' at the end of your url...");
 
     $url = self::parse_url();
     $req_method = self::get_request_method();
-    
-    $route = $url[0] ?? self::$conf_route;
-    $method = $url[1] ?? self::$conf_method;
+
+    $route = $url[0] ?? DEFAULT_ROUTER_ROUTE;
+    $method = $url[1] ?? DEFAULT_ROUTER_METHOD;
     $params = isset($url[2]) ? array_slice($url, 2) : [];
 
     if (self::does_route_exist($route, $method, $req_method)) {
@@ -54,24 +45,10 @@ class Router {
     }
   }
 
-  public static function config($config_assoc_array = []) {
-    self::$conf_set = true;
 
-    self::$conf_path['components'] = $config_assoc_array['path']['components'] ?? './components';
-    self::$conf_path['templates'] = $config_assoc_array['path']['templates'] ?? './templates';
-    self::$conf_path['routes'] = $config_assoc_array['path']['routes'] ?? './routes';
-    self::$conf_path['models'] = $config_assoc_array['path']['models'] ?? './models';
-    self::$conf_path['views'] = $config_assoc_array['path']['views'] ?? './views';
-
-    self::$conf_route = $config_assoc_array['default_route'] ?? "home";
-    self::$conf_method = $config_assoc_array['default_method'] ?? "index";
-
-    self::$conf_template_engine = $config_assoc_array['template_engine'] ?? null;
-  }
-
-  private static function include_config_paths() {
-    include_all_r(self::$conf_path['routes']);
-    include_all_r(self::$conf_path['models']);
+  private static function include_route_folders() {
+    include_all_r(PATH_ROUTES);
+    include_all_r(PATH_MODELS);
   }
 
   // Developing functions
@@ -82,16 +59,9 @@ class Router {
   }
 
   // Template engine
-  public static function set_template_engine($name) {
-    // TODO: check if the engine exists
-    self::$conf_template_engine = $name;
-  }
-  public static function is_template_engine_set() {
-    return !empty(self::$conf_template_engine);
-  }
   public static function compile_render_template($view_path, $view_data) {
-    if (class_exists(self::$conf_template_engine) && method_exists(self::$conf_template_engine, 'compile_render')) {
-      call_user_func(self::$conf_template_engine.'::compile_render', $view_path, $view_data);
+    if (class_exists(TEMPLATE_ENGINE) && method_exists(TEMPLATE_ENGINE, 'compile_render')) {
+      call_user_func(TEMPLATE_ENGINE.'::compile_render', $view_path, $view_data);
     }
     else {
       echo "Please check your Templating engine. The class or compile method was not found.";
@@ -102,7 +72,7 @@ class Router {
   private function req($method, $request_method, $middleware_callback, $callback=null) {
     // Split up method to get parameters (parameters -> routes_data)
     $method = self::parse_url($method);
-    $method_name = $method[0] ?? self::$conf_method;
+    $method_name = $method[0] ?? DEFAULT_ROUTER_METHOD;
     $params = isset($method[1]) ? array_slice($method, 1) : [];
 
     // Create routes_data

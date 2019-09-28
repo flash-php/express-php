@@ -55,7 +55,7 @@ class Database {
     // read
     if (substr($function_name, 0, 3) === 'get') {
       $function_name = substr($function_name, 3);
-      $function_name_array = array_filter(explode('_', str_replace("By", "_", $function_name)));
+      $function_name_array = array_filter(explode('private', str_replace("By", "private", $function_name)));
       $fn_arr_len = count($function_name_array);
 
       if ($fn_arr_len === 1) { //Example: getUserBy(['id' => 3]);
@@ -67,7 +67,7 @@ class Database {
         // TODO: Check in schema's
         $table = $function_name_array[0];
         $attributes = $function_name_array[1];
-        $attribute_array = array_filter(explode('_', str_replace("And", "_", $attributes)));
+        $attribute_array = array_filter(explode('private', str_replace("And", "private", $attributes)));
         $attribute_array_assoc = [];
         
         // Example: getUserByIdAndFirstname(5, 'Ingo');
@@ -196,10 +196,10 @@ class Database {
         $where_part_array = [];
         $where_str = '(';
         for($i = 0, $l = count($attr_array); $i < $l; ++$i) {
-          $where_part_array[] = "$name=:{$prefix}{$name}_{$i}";
+          $where_part_array[] = "$name=:{$prefix}{$name}private{$i}";
           
           // Fix parameters array (flatten)
-          $parameters["{$prefix}{$name}_{$i}"] = $attr_array[$i];
+          $parameters["{$prefix}{$name}private{$i}"] = $attr_array[$i];
         }
         unset($parameters[$name]);
         $where_str .= join($where_part_array, ' OR ') . ')'; 
@@ -218,5 +218,3 @@ class Database {
     self::$database_schemas = DatabaseSchema::export();
   }
 };
-
-
