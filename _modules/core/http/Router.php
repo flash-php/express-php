@@ -12,7 +12,7 @@
 class Router {
   // Variables
   private $route_name;
-  private static $routes_data = [];
+  public static $routes_data = [];
 
   // Constructor
   public function __construct($route_name) {
@@ -47,8 +47,9 @@ class Router {
 
 
   private static function include_route_folders() {
-    include_all_r(PATH_ROUTES);
+    include_all_r(PATH_MIDDLEWARE);
     include_all_r(PATH_MODELS);
+    include_all_r(PATH_ROUTES);
   }
 
   // Developing functions
@@ -56,16 +57,6 @@ class Router {
     echo '<pre>';
     print_r( self::$routes_data );
     echo '</pre>';
-  }
-
-  // Template engine
-  public static function compile_render_template($view_path, $view_data) {
-    if (class_exists(TEMPLATE_ENGINE) && method_exists(TEMPLATE_ENGINE, 'compile_render')) {
-      call_user_func(TEMPLATE_ENGINE.'::compile_render', $view_path, $view_data);
-    }
-    else {
-      echo "Please check your Templating engine. The class or compile method was not found.";
-    }
   }
   
   // Helper functions

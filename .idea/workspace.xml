@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="b7abebb5-ee84-49f9-9aec-3baa610dd651" name="Default Changelist" comment="Created a FileHandler Class for file upload and checking.">
-      <change afterPath="$PROJECT_DIR$/_modules/core/http/Request/Request.php" afterDir="false" />
+    <list default="true" id="b7abebb5-ee84-49f9-9aec-3baa610dd651" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/_modules/core/database/Database.php" beforeDir="false" afterPath="$PROJECT_DIR$/_modules/core/database/Database.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/_modules/core/engines/STE.php" beforeDir="false" afterPath="$PROJECT_DIR$/_modules/core/engines/STE.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/_modules/core/files/FileHandler.php" beforeDir="false" afterPath="$PROJECT_DIR$/_modules/core/files/FileHandler.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/_modules/core/files/FileUploadInfo.php" beforeDir="false" afterPath="$PROJECT_DIR$/_modules/core/files/FileUploadInfo.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/_modules/core/http/HttpException.php" beforeDir="false" afterPath="$PROJECT_DIR$/_modules/core/http/HttpException.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/_modules/core/http/Request.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/_modules/config/private/http.php" beforeDir="false" afterPath="$PROJECT_DIR$/_modules/config/private/http.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_modules/core/engines/Component.php" beforeDir="false" afterPath="$PROJECT_DIR$/_modules/core/engines/Component.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_modules/core/engines/EngineInterface.php" beforeDir="false" afterPath="$PROJECT_DIR$/_modules/core/engines/TemplateEngineStrategy.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_modules/core/engines/STE.php" beforeDir="false" afterPath="$PROJECT_DIR$/_modules/core/engines/SimpleTemplatingEngine.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/_modules/core/http/Response.php" beforeDir="false" afterPath="$PROJECT_DIR$/_modules/core/http/Response.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/_modules/core/http/Router.php" beforeDir="false" afterPath="$PROJECT_DIR$/_modules/core/http/Router.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_modules/helpers/Config.php" beforeDir="false" afterPath="$PROJECT_DIR$/_modules/helpers/Config.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_modules/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/_modules/index.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/home.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/home.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -103,7 +103,7 @@
       <workItem from="1569662061832" duration="320000" />
       <workItem from="1569662397936" duration="179000" />
       <workItem from="1569662593333" duration="4676000" />
-      <workItem from="1569668109369" duration="1119000" />
+      <workItem from="1569668109369" duration="6655000" />
     </task>
     <task id="LOCAL-00001" summary="Added project to PHPStorm">
       <created>1569223424626</created>
@@ -147,7 +147,14 @@
       <option name="project" value="LOCAL" />
       <updated>1569669209500</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="Restructured files and folders. Moved/separated functionality to different files.">
+      <created>1569670907746</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1569670907746</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -173,6 +180,7 @@
     <MESSAGE value="Created a FileHandler Class for file upload and checking." />
     <MESSAGE value="Added better configuration support. Config::set(), Config::default() and better structure." />
     <MESSAGE value="Small changes in example code and file loaders. Moved NullObj to deprecated folder." />
-    <option name="LAST_COMMIT_MESSAGE" value="Small changes in example code and file loaders. Moved NullObj to deprecated folder." />
+    <MESSAGE value="Restructured files and folders. Moved/separated functionality to different files." />
+    <option name="LAST_COMMIT_MESSAGE" value="Restructured files and folders. Moved/separated functionality to different files." />
   </component>
 </project>

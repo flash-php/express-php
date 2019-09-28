@@ -16,7 +16,10 @@ include './_modules/core/http/Request/RequestBodyHandler.php';
 include './_modules/core/database/Database.php';
 include './_modules/core/database/DatabaseSchema.php';
 // Core: template engines
-include './_modules/core/engines/STE.php';
+include './_modules/core/engines/TemplateEngineStrategy.php';
+include './_modules/core/engines/TemplateEngineException.php';
+include './_modules/core/engines/NoTemplatingEngine.php';
+include './_modules/core/engines/SimpleTemplatingEngine.php';
 include './_modules/core/engines/Component.php';
 // Core: file handlers
 include './_modules/core/files/FileHandler.php';

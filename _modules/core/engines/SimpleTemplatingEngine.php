@@ -8,31 +8,38 @@
  * This class can handle simple variables and templating. More soon... 
  * 
  * @uses /
+ * @todo Change engine to non-static !!!!
  */
-class STE {
-  public static function compile_render($view_path, $view_data) {
-    // echo 'STE: Compiling and rendering view...';
-    
-    $view_str = self::compile_template("./views/$view_path.php");
-    self::render_data_from_string($view_str, $view_data);
-    // self::render_data("./views/$view_path.php", $view_data);
+class SimpleTemplatingEngine implements TemplateEngineStrategy {
+  public function compile_render($view_name, $view_data) {
+    $view_path = trim(PATH_VIEWS, '/') . '/';
+    $view_name = trim($view_name, '/');
+    $full_view_path = $view_path.$view_name.'.php';
+
+    $view_str = $this->compile_template($full_view_path);
+    $this->render_data_from_string($view_str, $view_data);
   }
 
-  public static function render_data($full_path, $data) {
+  /**
+   * @used-by Component
+   * @param $full_path
+   * @param $data
+   */
+  public function render_data($full_path, $data) {
     foreach(array_keys($data) as $variable_name)
       eval("$$variable_name = \$data['$variable_name'];");
 
     include_once($full_path);
   }
 
-  public static function render_data_from_string($view_string, $view_data) {
+  public function render_data_from_string($view_string, $view_data) {
     foreach(array_keys($view_data) as $variable_name)
       eval("$$variable_name = \$view_data['$variable_name'];");
     
     eval("?>$view_string<?php");
   }
 
-  public static function compile_template($full_view_path) {
+  public function compile_template($full_view_path) {
     if (!file_exists($full_view_path)) {
       echo "STE: Error: File not found at '$full_view_path'.";
       return false;
@@ -43,13 +50,13 @@ class STE {
 
     // Templating
     if (substr($view_str, 0, 8) === '@extends') {
-      $view_str = self::_compile_extends($view_str, $view_lines);
+      $view_str = $this->_compile_extends($view_str, $view_lines);
     }
     
     return $view_str;
   }
 
-  private static function _compile_extends(&$view_str, &$view_lines) {
+  private function _compile_extends(&$view_str, &$view_lines) {
     // TODO: optimize using strtok ($view_lines)
 
     // Get template

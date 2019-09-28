@@ -12,11 +12,11 @@
 class Response {
     // Writing to the screen
     public function send($data='') {
-        echo $data;
+        print(htmlspecialchars($data));
     }
 
     public function send_r($data='') {
-        echo "<pre>";
+        echo "<pre style='font-family: inherit;'>";
         print_r($data);
         echo "</pre>";
     }
@@ -27,10 +27,9 @@ class Response {
         echo '</pre>';
     }
 
-    public function view($path='home/index', $data=[]) {
-        $full_path = "./views/$path.php";
-
-        Router::compile_render_template($path, $data);
+    public function view($name='home/index', $data=[]) {
+        $engine = Config::TEMPLATE_ENGINE();
+        $engine->compile_render($name, $data);
     }
 
     public function render($path='home/index', $data=[]) {
