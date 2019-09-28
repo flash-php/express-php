@@ -1,15 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="b7abebb5-ee84-49f9-9aec-3baa610dd651" name="Default Changelist" comment="">
+    <list default="true" id="b7abebb5-ee84-49f9-9aec-3baa610dd651" name="Default Changelist" comment="Created a FileHandler Class for file upload and checking.">
+      <change afterPath="$PROJECT_DIR$/views/request/index.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/_modules/config/config.php" beforeDir="false" afterPath="$PROJECT_DIR$/_modules/config/config.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/_modules/core/database/Database.php" beforeDir="false" afterPath="$PROJECT_DIR$/_modules/core/database/Database.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/_modules/core/engines/STE.php" beforeDir="false" afterPath="$PROJECT_DIR$/_modules/core/engines/STE.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_modules/core/files/FileHandler.php" beforeDir="false" afterPath="$PROJECT_DIR$/_modules/core/files/FileHandler.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_modules/core/files/FileUploadInfo.php" beforeDir="false" afterPath="$PROJECT_DIR$/_modules/core/files/FileUploadInfo.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_modules/core/http/HttpException.php" beforeDir="false" afterPath="$PROJECT_DIR$/_modules/core/http/HttpException.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_modules/core/http/Request.php" beforeDir="false" afterPath="$PROJECT_DIR$/_modules/core/http/Request/Request.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_modules/core/http/Response.php" beforeDir="false" afterPath="$PROJECT_DIR$/_modules/core/http/Response.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_modules/core/http/Router.php" beforeDir="false" afterPath="$PROJECT_DIR$/_modules/core/http/Router.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_modules/helpers/GetNullObj.php" beforeDir="false" afterPath="$PROJECT_DIR$/_modules/deprecated/GetNullObj.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/_modules/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/_modules/index.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/index.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/routes/home.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/home.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/request/putform.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/request/index.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/request/putform.php" beforeDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -41,6 +48,9 @@
     </expand>
     <select />
   </component>
+  <component name="FavoritesManager">
+    <favorites_list name="express-php" />
+  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
@@ -51,17 +61,20 @@
   <component name="PropertiesComponent">
     <property name="DatabaseDriversLRU" value="mysql" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/public/images" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/_modules/config/private" />
+    <property name="settings.editor.selected.configurable" value="preferences.editor" />
   </component>
   <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\Users\Ingo Andelhofs\Documents\git\express-php\public\images" />
-    </key>
     <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Users\Ingo Andelhofs\Documents\git\express-php\_modules\core\engines" />
-      <recent name="C:\Users\Ingo Andelhofs\Documents\git\express-php\_modules\core\database" />
-      <recent name="C:\Users\Ingo Andelhofs\Documents\git\express-php\_modules\core\http" />
+      <recent name="C:\Users\Ingo Andelhofs\Documents\git\express-php\_modules\config\_" />
       <recent name="C:\Users\Ingo Andelhofs\Documents\git\express-php" />
+      <recent name="C:\Users\Ingo Andelhofs\Documents\git\express-php\_modules\core\http\Request" />
+      <recent name="C:\Users\Ingo Andelhofs\Documents\git\express-php\_modules\deprecated" />
+      <recent name="C:\Users\Ingo Andelhofs\Documents\git\express-php\_modules\core\engines" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\Ingo Andelhofs\Documents\git\express-php\_modules\config\private" />
+      <recent name="C:\Users\Ingo Andelhofs\Documents\git\express-php\public\images" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -87,7 +100,15 @@
       <option name="presentableId" value="Default" />
       <updated>1569222640066</updated>
       <workItem from="1569222643323" duration="2659000" />
-      <workItem from="1569251709662" duration="12867000" />
+      <workItem from="1569251709662" duration="13126000" />
+      <workItem from="1569303247245" duration="1216000" />
+      <workItem from="1569307525251" duration="2027000" />
+      <workItem from="1569602996454" duration="4824000" />
+      <workItem from="1569660210051" duration="1570000" />
+      <workItem from="1569662061832" duration="320000" />
+      <workItem from="1569662397936" duration="179000" />
+      <workItem from="1569662593333" duration="4676000" />
+      <workItem from="1569668109369" duration="836000" />
     </task>
     <task id="LOCAL-00001" summary="Added project to PHPStorm">
       <created>1569223424626</created>
@@ -103,7 +124,21 @@
       <option name="project" value="LOCAL" />
       <updated>1569225193952</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="Small improvements and better file structure.">
+      <created>1569266434376</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1569266434376</updated>
+    </task>
+    <task id="LOCAL-00004" summary="Created a FileHandler Class for file upload and checking.">
+      <created>1569266495130</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1569266495130</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -125,6 +160,8 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Added project to PHPStorm" />
     <MESSAGE value="New file structure" />
-    <option name="LAST_COMMIT_MESSAGE" value="New file structure" />
+    <MESSAGE value="Small improvements and better file structure." />
+    <MESSAGE value="Created a FileHandler Class for file upload and checking." />
+    <option name="LAST_COMMIT_MESSAGE" value="Created a FileHandler Class for file upload and checking." />
   </component>
 </project>
