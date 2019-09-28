@@ -1,5 +1,7 @@
 <?php
 
+session_start();
+
 // Helper files
 include './_modules/helpers/helpers.php';
 include './_modules/helpers/AdvancedNullObject.php';
@@ -12,9 +14,12 @@ include './_modules/core/exceptions/FlashPhpException.php';
 include './_modules/core/http/Router.php';
 include './_modules/core/http/Route.php';
 include './_modules/core/http/Response/Response.php';
+
 include './_modules/core/http/Request/Request.php';
 include './_modules/core/http/Request/RequestBodyHandler.php';
 include './_modules/core/http/Request/RequestFileHandler.php';
+include './_modules/core/http/Request/RequestSessionHandler.php';
+include './_modules/core/http/Request/RequestCookieHandler.php';
 
 // Core: database files
 include './_modules/core/database/Database.php';

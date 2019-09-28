@@ -2,23 +2,10 @@
 
 
 class RequestBodyHandler extends AdvancedNullObject {
+  // Constructor
   public function __construct() {
     parent::__construct($this->get_body_array());
   }
-
-
-  /**
-   * @todo Create validation function
-   */
-  public function validate() {
-    echo 'Validating...';
-  }
-
-
-  /**
-   * Get_body_array
-   * @return array Geeft de body array terug.
-   */
   private function &get_body_array() {
     switch ($_SERVER['REQUEST_METHOD']) {
       case 'GET':
@@ -36,5 +23,11 @@ class RequestBodyHandler extends AdvancedNullObject {
         return [];
         break;
     }
+  }
+
+  // Functions
+  public function validate() {
+    // TODO: Create validation function.
+    echo 'Validating...';
   }
 }

@@ -5,7 +5,7 @@
  * @author Ingo Andelhofs
  */
 class AdvancedNullObject {
-  public $assoc_array;
+  protected $assoc_array;
 
   public function __debugInfo() {
     return $this->assoc_array;

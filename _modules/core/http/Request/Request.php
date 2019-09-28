@@ -1,33 +1,34 @@
 <?php
 
-
 /**
- * RouterRequestObject Class
+ * Class Request
+ * Access request body, session, cookie, files, database, params, ...
+ *
  * @author Ingo Andelhofs
  *
- * A class that handles all the Request functionalities.
- *
- * @uses Database class
- * @uses GetNullObj / AdvanvcedNullObject
+ * @uses RequestBodyHandler
+ * @uses RequestSessionHandler
+ * @uses RequestCookieHandler
+ * @uses RequestFileHandler
+ * @uses Database
+ * @uses AdvancedNullObject
  */
 class Request {
     public $body;
-    public $params;
-
-    public $db;
-
     public $session;
     public $cookie;
     public $files;
 
+    public $db;
+    public $params;
+
     public function __construct($param_array) {
         $this->body = new RequestBodyHandler();
-        $this->params = new AdvancedNullObject($param_array);
-
-        $this->db = new Database();
-
-        $this->session = new AdvancedNullObject($_SESSION);
-
+        $this->session = new RequestSessionHandler();
+        $this->cookie = new RequestCookieHandler();
         $this->files = new RequestFileHandler();
+
+        $this->params = new AdvancedNullObject($param_array);
+        $this->db = new Database(); // TODO: Change to Database::instance() -> singleton
     }
 };

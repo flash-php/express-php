@@ -180,6 +180,22 @@ $filename = $req->files->profile_picture->storeAs('public/images', 'filename'); 
 $res->download($path);
 ```
 
+### Sessions and cookies
+```php
+$home->get('/index', function($req, $res) {
+    // Cookies
+    $req->cookie->username = 'Ingo';
+    $res->send($req->cookie->user);
+
+    // Sessions
+    $req->session->user = [
+        'fname' => 'Ingo',
+        'lname' => 'Andelhofs',
+        'pwd' => '**********'
+    ];
+});
+```
+
 ### Internal working
 You can see this structure by using the `Router::print_all()` function.  
 > ./routes/home.php
@@ -404,21 +420,6 @@ Supported attributes: `href`, `data-req`, `data-body` (except for DELETE) and `d
 ```
 
 ## In Development
-### Sessions and cookies
-```php
-$home->get('/index', function($req, $res) {
-    // Cookies
-    $req->cookie->set();
-    $req->cookie->read();
-    $req->cookie->update();
-
-    // Sessions
-    $req->session->set();
-    $req->session->read();
-    $req->session->update();
-});
-```
-
 ### Validation
 > in $route_callback($req, $res)
 ```php
