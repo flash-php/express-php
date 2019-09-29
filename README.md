@@ -6,7 +6,7 @@ Student at UHasselt (2019)
 1. [Installation](#Installation)
 2. [Router Usage](#Router-Usage)
 3. [Database Usage](#Database-Usage)
-3. [Simple Template Engine (STE) Usage](#Simple-Template-Engine-(STE)-Usage)
+3. [Templating Engines Usage](#Templating-Engines)
 3. [JavaScript Helpers](#JavaScript-Helpers)
 3. [In Development](#In-Development)
 
@@ -26,14 +26,6 @@ Comming soon...
 The biggest part of FlashPHP is its Router. U can easily create RESTful routes and use their given `$request` and `$response` objects to handle basic route functionalities. 
 
 ### Initialization
-> ./_modules/config/config.php
-```php
-// Here we set the template_engine to STE. 
-// For the rest, we use the default configurations.
-Router::config([
-  'template_engine' => 'STE'
-]);
-```
 > index.php
 ```php
 // Create a base router. In this case the home route.
@@ -42,7 +34,7 @@ $home = new Router('/home');
 // Include other route files (see later) or use the same file for small Routers.
 // Here we create a simple GET route '/index' for the home route.
 // You can access this route by going to '{hostname}/home/index'.
-$home->get('/index', function ($request, $response) {
+$home->get('/index', function (Request $request, Response $response) {
   // Code for route here...
 });
 
@@ -52,20 +44,17 @@ Router::start();
 
 ### Default config
 ```php
-$conf = [
-  'path' => [
-    'components' => './components',  
-    'templates' => './templates',  
-    'models' => './models',  
-    'routes' => './components',  
-    'views' => './views',  
-  ],
-  'default_route' => 'home',
-  'default_method' => 'index',
-  'template_engine' => null
-];
+Config::default('PATH_COMPONENTS', './components');
+Config::default('PATH_MODELS', './models');
+Config::default('PATH_VIEWS', './views');
+Config::default('PATH_TEMPLATES', './templates');
+Config::default('PATH_ROUTES', './routes');
+Config::default('PATH_MIDDLEWARE', './middleware');
 
-Router::config($conf);
+Config::default('DEFAULT_ROUTER_METHOD', 'index');
+Config::default('DEFAULT_ROUTER_ROUTE', 'home');
+
+Config::default_obj('TEMPLATE_ENGINE', new MTemplatingEngine());
 ```
 
 ### Request methods
@@ -73,47 +62,60 @@ Router::config($conf);
 $base_route = new Router('/base');
 
 // GET (read) requests
-$base_route->get('/index', function($req, $res) {/* Code here... */});
+$base_route->get('/index', function(Request $req, Response $res) {/* Code here... */});
 
 // POST (write/create) requests
-$base_route->post('/index', function($req, $res) {/* Code here... */});
+$base_route->post('/index', function(Request $req, Response $res) {/* Code here... */});
 
 // PUT (update) requests
-$base_route->put('/index', function($req, $res) {/* Code here... */});
+$base_route->put('/index', function(Request $req, Response $res) {/* Code here... */});
 
 // DELETE (delete) requests
-$base_route->delete('/index', function($req, $res) {/* Code here... */});
+$base_route->delete('/index', function(Request $req, Response $res) {/* Code here... */});
 ```
 
-### The $request object
+### The Request object
 ```php
-$route->get('/index/:param1/:param2', function($req, $res) {
+$route->get('/index/:param1/:param2', function(Request $req, Response $res) {
   // Returns an object of $_REQUEST, $_POST, $_GET, ($_PUT, $_DELETE)
   $req->body;
   $req->body->name;
-
-  // Returns an assoc array of $_REQUEST, $_POST, $_GET, ($_PUT, $_DELETE)
-  $req->body_array;
-  $req->body_array['name'];
 
   // Returns the parameter value given in the url or null if not given. 
   $req->params;
   $req->params->param2;
 
-  // Returns a Database object. See later.
+  // Returns the Database object. See later.
   $req->db;
   $req->db->create('User', ['name' => 'Jhon Doe', 'email' => 'jhond@example.com']);
+
+  // Returns the uploaded files
+  $req->files;
+  $req->files->name->store('private/images/upload');
+
+  // Returns the Session object
+  $req->session;
+  $req->session->username = 'ingo_andelhofs';
+  $req->session->username; // returns 'ingo_andelhofs' (also set in $_SESSION['username'])
+
+  // Returns the Cookie object
+  $req->cookie;
+  $req->cookie->firstname = 'Ingo';
+  $req->cookie->firstname; // returns 'Ingo' (also set in $_COOKIE['firstname'])
 })
 ```
 
-### The $response object
+### The Response object
 ```php
-$route->get('/index', function($req, $res) {
-  // Send text data to route.
+$route->get('/index', function(Request $req, Response $res) {
+  // Send text data to route via htmlspecialchars
   $res->send('Hello World!');
 
   // Send datastructures as text data to route (print_r).
   $res->send_r([3, 4, 5]);
+
+  // Send error
+  $res->error('An error occured!');
 
   // Log a JavaScript message to the js console.
   $res->js_log('A console message.');
@@ -133,8 +135,11 @@ $route->get('/index', function($req, $res) {
   $res->redirect('/home/index');
   $res->redirect_back();
   
-  // Comming soon ...
-  $res->download();
+  // Read a file
+  $res->readfile('private/images/uploads/img.jpg');
+
+  // Download a file
+  $res->download('private/images/uploads/img.jpg');
 });
 ```
 
@@ -143,9 +148,7 @@ $route->get('/index', function($req, $res) {
 class Auth {
   public static function is_user($param) {
     return function() use($param) {
-      // Code here... 
-
-      // Comming soon... (true, false)
+      ...
       return Middleware::next();
       return Middleware::block();
     };
@@ -153,13 +156,13 @@ class Auth {
 };
 ```
 ```php
-$auth->post('/admin_only', [Auth::is_user_logged_in(), Auth::is_user("admin")], function($req, $res) {
+$auth->post('/admin_only', [Auth::is_user_logged_in(), Auth::is_user("admin")], function(Request $req, Response $res) {
   // Code for admin only here... 
 });
 ```
 
 ### File handeling
-> in $route_callback($req, $res)
+> in $route_callback(Request $req, Response $res)
 ```php
 // check for files
 $req->hasFiles();
@@ -182,7 +185,7 @@ $res->download($path);
 
 ### Sessions and cookies
 ```php
-$home->get('/index', function($req, $res) {
+$home->get('/index', function(Request $req, Response $res) {
     // Cookies
     $req->cookie->username = 'Ingo';
     $res->send($req->cookie->user);
@@ -203,7 +206,7 @@ You can see this structure by using the `Router::print_all()` function.
 // When u create a Router, it is added to Router::$routes_data. 
 // All the information about the route is saved there.
 $home = new Router('/home');
-$home->get('/index/:id', function($req, $res) {
+$home->get('/index/:id', function(Request $req, Response $res) {
   // Code here...
 });
 ```
@@ -340,37 +343,59 @@ $db->duplicateUser(['id' => 5]);
 $db->duplicateUserById(5);
 ```
 
-## Simple Template Engine (STE) Usage
-### A simple example
-> index.php or ./_modules/config/config.php
-```php
-Router::set_template_engine('STE');
-```
+## Templating Engines
+- BaseTemplatingEngine
+- NTemplatingEngine (No)
+- STemplatingEngine (Simple)
+- MTemplatingEngine (Medium)
+- Components
 
-> ./routes/home.php
+### BaseTemplatingEngine
+- Simple rendering for views width data.
+#### Rendering
+> ./routes/home
 ```php
-$home->get('/index', function($req, $res) {
-  $res->view('home/homepage', ['title' => 'Welcome to our page.']);
+$home->get('/index', function(Request $req, Response $res) {
+  ...
+  $res->view('home/homepage', [
+    'title' => 'Welcome to the homepage.'
+  ]);
 });
 ```
-> ./views/home/homepage.php
+
+> ./views/home/homepage
 ```html
+...
+<h1><?php print($title); ?></h1>
+...
 <h1><?= $title ?></h1>
 ```
 
-> ./views/home/homepage2.php
+### NTemplatingEngine
+- Simple rendering for views width data.
+- Var prefixing
+
+### STemplatingEngine
+- Simple rendering for views width data.
+- Var prefixing
+- Pretty printing
+- Templates
+
+#### Pretty printing
+> ./views/home/homepage
 ```html
-<!-- coming soon... -->
+<!-- print via htmlspecialchars -->
 <h1>{{ $title }}</h1>
 
-@if($title === 'Welcome'):
-  // code here ...
-@endif
+<!-- print without htmlspecialchars -->
+<h1>{{! $title }}</h1>
+
+<!-- print via print_r -->
+<h1>{{r $title }}</h1>
 ```
 
-### Templates
-An easy way to include header, footer, scripts, ... into your main file.
-> ./templates/TemplateName.php
+#### Templating
+> ./templates/TemplateName
 ```html
 <html> 
   <head>
@@ -381,7 +406,8 @@ An easy way to include header, footer, scripts, ... into your main file.
   </body>  
 </html>
 ```
-> ./views/home/template.php
+
+> ./views/home/template
 ```html
 @extends TemplateName
 
@@ -392,14 +418,46 @@ An easy way to include header, footer, scripts, ... into your main file.
 <h1>Welcom</h1>  
 ```
 
-### Components
-```php
-Component::render('banner', ['title' => 'Welcome']);
+### MTemplatingEngine
+- Simple rendering for views width data.
+- Var prefixing
+- Pretty printing
+- Templates
+- Conditionals
+- Components
 
-// Or
+#### Conditionals
+> ./views/home/homepage
+```html
+<!-- If statements -->
+@if(condition):
+  <p>If is true</p>
+@else if(condition):
+  <p>Else if is true</p>
+@elif(condition):
+  <p>Elif is true</p>
+@endif
 
-Component::banner(['title' => 'Welcome']);
+<!-- Foreach loops -->
+@foreach($names as $name):
+  <p>{{ $name }}</p>
+@endforeach
 ```
+
+#### Components
+> ./views/home/homepage
+```html
+<!-- Via component::render -->
+<?php Component::render('banner', ['title' => 'Welcome']); ?>
+
+<!-- Via component::compName -->
+<?php Component::compName(['title' => 'Welcome']); ?>
+
+<!-- Via MTemplatingEngine -->
+@component compName('title' => 'Welcome')
+@component compName['title' => 'Welcome']
+```
+
 
 ## JavaScript Helpers
 ### RESThelper.js
@@ -421,14 +479,14 @@ Supported attributes: `href`, `data-req`, `data-body` (except for DELETE) and `d
 
 ## In Development
 ### Validation
-> in $route_callback($req, $res)
+> in $route_callback(Request $req, Response $res)
 ```php
 $req->validate();
 $req->body()->validate();
 ```
 
 ### Flash messages
-> in $route_callback($req, $res)
+> in $route_callback(Request $req, Response $res)
 ```php
 $res->flash($name, $message);
 ```

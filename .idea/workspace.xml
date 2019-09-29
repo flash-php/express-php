@@ -1,18 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="b7abebb5-ee84-49f9-9aec-3baa610dd651" name="Default Changelist" comment="">
+    <list default="true" id="b7abebb5-ee84-49f9-9aec-3baa610dd651" name="Default Changelist" comment="Added full support for templating engines (Base, N, S, M). First stable version of templating engines module.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/_modules/config/private/http.php" beforeDir="false" afterPath="$PROJECT_DIR$/_modules/config/private/http.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/_modules/core/engines/BaseTemplateEngine.php" beforeDir="false" afterPath="$PROJECT_DIR$/_modules/core/engines/BaseTemplatingEngine.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/_modules/core/engines/Component.php" beforeDir="false" afterPath="$PROJECT_DIR$/_modules/core/engines/Component.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/_modules/core/engines/FlashTemplateEngineException.php" beforeDir="false" afterPath="$PROJECT_DIR$/_modules/core/engines/FlashTemplatingEngineException.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/_modules/core/engines/NTemplatingEngine.php" beforeDir="false" afterPath="$PROJECT_DIR$/_modules/core/engines/NTemplatingEngine.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/_modules/core/engines/STemplatingEngine.php" beforeDir="false" afterPath="$PROJECT_DIR$/_modules/core/engines/STemplatingEngine.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/_modules/core/engines/TemplateEngineStrategy.php" beforeDir="false" afterPath="$PROJECT_DIR$/_modules/core/engines/TemplatingEngineStrategy.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/_modules/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/_modules/index.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/Example1.php" beforeDir="false" afterPath="$PROJECT_DIR$/components/Example1.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/home/template.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/home/template.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -105,7 +96,7 @@
       <workItem from="1569662397936" duration="179000" />
       <workItem from="1569662593333" duration="4676000" />
       <workItem from="1569668109369" duration="28905000" />
-      <workItem from="1569755099422" duration="17233000" />
+      <workItem from="1569755099422" duration="19710000" />
     </task>
     <task id="LOCAL-00001" summary="Added project to PHPStorm">
       <created>1569223424626</created>
@@ -191,7 +182,14 @@
       <option name="project" value="LOCAL" />
       <updated>1569767259348</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="Added full support for templating engines (Base, N, S, M). First stable version of templating engines module.">
+      <created>1569779857921</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1569779857921</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -211,6 +209,7 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
+    <option name="CHECK_NEW_TODO" value="false" />
     <MESSAGE value="Added project to PHPStorm" />
     <MESSAGE value="New file structure" />
     <MESSAGE value="Small improvements and better file structure." />
@@ -223,6 +222,7 @@
     <MESSAGE value="Added support for sessions and cookies. Updated README." />
     <MESSAGE value="Added support for Middleware::next() and Middleware::block()." />
     <MESSAGE value="Updated the structure of the templating engines and cleaned up engine code." />
-    <option name="LAST_COMMIT_MESSAGE" value="Updated the structure of the templating engines and cleaned up engine code." />
+    <MESSAGE value="Added full support for templating engines (Base, N, S, M). First stable version of templating engines module." />
+    <option name="LAST_COMMIT_MESSAGE" value="Added full support for templating engines (Base, N, S, M). First stable version of templating engines module." />
   </component>
 </project>
