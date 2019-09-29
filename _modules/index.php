@@ -16,6 +16,7 @@ include './_modules/core/middleware/Middleware.php';
 // Core: http files
 include './_modules/core/http/Router.php';
 include './_modules/core/http/Route.php';
+
 include './_modules/core/http/Response/Response.php';
 
 include './_modules/core/http/Request/Request.php';
@@ -46,6 +47,14 @@ include './_modules/core/validation/Validator.php';
 
 // Core: auth
 include './_modules/core/auth/Auth.php';
+
+// Core: auth (passwords)
+include './_modules/core/auth/passwords/PasswordStrategy.php';
+
+include './_modules/core/auth/passwords/PasswordHandler.php';
+include './_modules/core/auth/passwords/LocalPassword.php';
+include './_modules/core/auth/passwords/FacebookPassword.php';
+include './_modules/core/auth/passwords/GooglePassword.php';
 
 
 

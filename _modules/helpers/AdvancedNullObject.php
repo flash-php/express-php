@@ -1,8 +1,11 @@
 <?php
 
 /**
- * Class AdvancedNullObject
+ * Class AdvancedNullObject <br>
+ * Creates an object from a given array. Invalid access returns NULL;
+ *
  * @author Ingo Andelhofs
+ * @todo return singleton
  */
 class AdvancedNullObject {
   protected $assoc_array;

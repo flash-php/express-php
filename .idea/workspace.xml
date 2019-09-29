@@ -3,7 +3,10 @@
   <component name="ChangeListManager">
     <list default="true" id="b7abebb5-ee84-49f9-9aec-3baa610dd651" name="Default Changelist" comment="Added full support for templating engines (Base, N, S, M). First stable version of templating engines module.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_modules/config/private/config.php" beforeDir="false" afterPath="$PROJECT_DIR$/_modules/config/private/config.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_modules/core/auth/Auth.php" beforeDir="false" afterPath="$PROJECT_DIR$/_modules/core/auth/Auth.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_modules/helpers/AdvancedNullObject.php" beforeDir="false" afterPath="$PROJECT_DIR$/_modules/helpers/AdvancedNullObject.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_modules/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/_modules/index.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -52,16 +55,16 @@
     <property name="settings.editor.selected.configurable" value="preferences.editor" />
   </component>
   <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\Users\Ingo Andelhofs\Documents\git\express-php\_modules\config\private" />
-      <recent name="C:\Users\Ingo Andelhofs\Documents\git\express-php\public\images" />
-    </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Ingo Andelhofs\Documents\git\express-php\_modules\core\auth\passwords" />
       <recent name="C:\Users\Ingo Andelhofs\Documents\git\express-php\templates" />
       <recent name="C:\Users\Ingo Andelhofs\Documents\git\express-php\_modules\core\middleware" />
       <recent name="C:\Users\Ingo Andelhofs\Documents\git\express-php\_modules\core\exceptions" />
       <recent name="C:\Users\Ingo Andelhofs\Documents\git\express-php\_modules\core" />
-      <recent name="C:\Users\Ingo Andelhofs\Documents\git\express-php\_modules\core\http\Response" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\Ingo Andelhofs\Documents\git\express-php\_modules\config\private" />
+      <recent name="C:\Users\Ingo Andelhofs\Documents\git\express-php\public\images" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -96,7 +99,7 @@
       <workItem from="1569662397936" duration="179000" />
       <workItem from="1569662593333" duration="4676000" />
       <workItem from="1569668109369" duration="28905000" />
-      <workItem from="1569755099422" duration="19710000" />
+      <workItem from="1569755099422" duration="22771000" />
     </task>
     <task id="LOCAL-00001" summary="Added project to PHPStorm">
       <created>1569223424626</created>
