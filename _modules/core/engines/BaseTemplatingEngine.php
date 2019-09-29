@@ -1,12 +1,12 @@
 <?php
 
 /**
- * Class BaseTemplateEngine <br>
+ * Class BaseTemplatingEngine <br>
  * The base template engine is used by all the other engines. By default this engine renders a view with data without any extra features.
  *
  * @author Ingo Andelhofs
  */
-class BaseTemplateEngine implements TemplateEngineStrategy {
+class BaseTemplatingEngine implements TemplatingEngineStrategy {
   protected static $unique_data_prefix = null;
 
   // Compile And Render
@@ -15,15 +15,15 @@ class BaseTemplateEngine implements TemplateEngineStrategy {
       $content_file = $this->get_file_content($file, PATH_VIEWS, 'View file does not exist');
       $this->render_file($content_file, $data, false);
     }
-    catch (FlashTemplateEngineException $e) {
-      (new Response())->error("@BaseTemplateEngine: " . $e);
+    catch (FlashTemplatingEngineException $e) {
+      (new Response())->error("@BaseTemplatingEngine: " . $e);
     }
   }
 
   // Rendering
   protected static function render_file(string $file, array $data, bool $var_prefixing = true, bool $demo_mode = false) {
     if ($demo_mode)
-      return self::demo_render_file();
+      return self::demo_render_file($file, $data, $var_prefixing);
 
     // IMPORTANT: first run 'new_unique_data_prefix' to generate prefix.
     $prefix = $var_prefixing ? self::new_unique_data_prefix() : '';
@@ -32,7 +32,7 @@ class BaseTemplateEngine implements TemplateEngineStrategy {
     foreach(array_keys($data) as $variable_name)
       eval($prefix ."$variable_name = \$data['$variable_name'];");
 
-    eval("?>$file<?php");
+    eval("?>$file");
   }
   private static function demo_render_file(string $file, array $data, bool $var_prefixing = true) {
     $variable_header = '--- vars ---<br>';
@@ -59,7 +59,7 @@ class BaseTemplateEngine implements TemplateEngineStrategy {
     $full_path = self::get_full_path($base_path, $file);
 
     if (!file_exists($full_path))
-      throw new FlashTemplateEngineException("$error_msg @ '$full_path'.");
+      throw new FlashTemplatingEngineException("$error_msg @ '$full_path'.");
 
     return file_get_contents($full_path);
   }

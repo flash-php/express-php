@@ -2,30 +2,24 @@
 
 /**
  * Class STemplatingEngine <br>
- * A class that handles compiling and rendering files.
- * This class can handle simple variables and templating. More soon...
+ * The simple template engine that supports: variables, var_prefixing, templates, printing
  *
  * @author Ingo Andelhofs
  */
-class STemplatingEngine implements TemplateEngineStrategy {
-  private $unique_data_prefix = null;
-
+class STemplatingEngine extends NTemplatingEngine implements TemplatingEngineStrategy {
   public function compile_render(string $file, array $data) {
-    $this->new_unique_data_prefix();
-
-    // Load content file
-    $view_file = $this->get_content_file($file);
+    $content_str = $this->get_content_file($file);
 
     // Compiling
-    $final_view_file = $this->compile_template($view_file);
+    $content_str = $this->compile_template($content_str);
+    $content_str = $this->compile_printing($content_str);
 
     // Rendering
-    $this->demo_render_file($final_view_file, $data);
+    self::render_file($content_str, $data, true, true);
   }
 
-  // NEW FUNCTIONS
-  // Compile
-  public function compile_template(string $content_file) : string {
+  // Compiling
+  protected function compile_template(string $content_file) : string {
     $template_content_array = $this->split_extends_from_content($content_file);
     if (empty($template_content_array))
       return $content_file;
@@ -39,68 +33,26 @@ class STemplatingEngine implements TemplateEngineStrategy {
 
     return $this->clean_up_sections($filled_in_template);
   }
-  public function compile_conditionals(string $content_file) : string {
-    // IF ELSE ELSEIF ENDIF PARSING
-    // $string = '
-    // @if(true):
-    //   echo "test";
-    // @else( expression() ):
-    // @elif( expression() ):
-    // @endif';
-    // $pattern = ['/(@if\()/', '/(@else\()/', '/(@elif\()|(@else if\()/', '/(@endif)/', '/(\):)/'];
-    // $replacement = ['?php if(', '} else(', '} else if(', '} ? >', ') {'];
-    // echo '<pre>';
-    // echo preg_replace($pattern, $replacement, $string) . '<br>';
-    // echo '</pre>';
-  }
-  public function compile_printing(string $content_file) : string {
-    // $string = '{{ $hello }} tree';
-    // $pattern = ['/(\{\{)/', '/(\}\})/'];
-    // $replacement = ['>?= htmlspecialchars(', ') ?<'];
-    // echo '<pre>';
-    // echo preg_replace($pattern, $replacement, $string) . '<br>';
-    // echo '</pre>';
-  }
+  protected static function compile_printing(string $content_file) : string {
+    $pattern  = [
+      '/(\{\{[^r!])\s*([$_0-9a-zA-Z> \-\[\]\(\)]{2,})\s*(;?)\s*(\}\})/', // {{ $var; }} -> htmlspecialchars
+      '/(\{\{!)\s*([$_0-9a-zA-Z> \-\[\]\(\)]{2,})\s*(;?)\s*(\}\})/', // {{! $var; }} -> no htmlspecialchars
+      '/(\{\{r)\s*([$_0-9a-zA-Z> \-\[\]\(\)]{2,})\s*(;?)\s*(\}\})/', // {{r $var; }} -> print_r
+    ];
+    $replacement = [
+      '<?php print(htmlspecialchars($2)); ?>',
+      '<?php print($2); ?>',
+      '<?php (new Response())->send_r($2); ?>',
+    ];
 
-  // Render
-  public function render_file(string $file, array $data) {
-    $prefixed_file = $this->prefix_file_variables($file);
-    foreach(array_keys($data) as $variable_name)
-      eval($this->unique_data_prefix ."$variable_name = \$data['$variable_name'];");
-
-    eval("?>$prefixed_file<?php");
+    return preg_replace($pattern, $replacement, $content_file);
   }
-  public function demo_render_file(string $file, array $data) {
-    print("-- variables --<br>");
-    foreach($data as $variable_name => $variable_value) {
-      print($this->unique_data_prefix ."$variable_name = ");
-      print_r($variable_value);
-      print(";<br>");
-    }
-    print("-- variables --<br><br>");
-
-    $prefixed_file = $this->prefix_file_variables($file);
-    (new Response())->send_r(htmlspecialchars($prefixed_file));
-  }
-
 
   // Getters
-  private function get_full_path(string $base_path, string $name) : string {
-    return trim($base_path, '/').'/'.trim($name, '/').'.php';
-  }
-  private function get_file_content(string $file, string $base_path, string $error_msg) : string {
-    $full_path = $this->get_full_path($base_path, $file);
-
-    if (!file_exists($full_path))
-      throw new FlashTemplateEngineException("$error_msg @ '$full_path'.");
-
-    return file_get_contents($full_path);
-  }
-
   private function get_template_file(string $template_name) : string {
     return $this->get_file_content($template_name, PATH_TEMPLATES, 'Template file does not exist');
   }
-  private function get_content_file(string $content_file_name) : string {
+  protected function get_content_file(string $content_file_name) : string {
     return $this->get_file_content($content_file_name, PATH_VIEWS, 'View file does not exist');
   }
 
@@ -143,21 +95,11 @@ class STemplatingEngine implements TemplateEngineStrategy {
     return $template_file;
   }
 
-  // Template clean up
+  // Clean up
   private function clean_up_file(string $file, string $regex) : string {
     return preg_replace($regex, '', $file);
   }
   private function clean_up_sections(string $template_file) : string {
     return $this->clean_up_file($template_file, '/@section \w+/');
-  }
-  private function clean_up_php_tags(string $file) : string {}
-
-  // Unique data
-  private function new_unique_data_prefix() : string {
-    $this->unique_data_prefix = uniqid('$_').'_';
-    return $this->unique_data_prefix;
-  }
-  private function prefix_file_variables(string $file) : string {
-    return preg_replace('/(\$)(\w+)/', $this->unique_data_prefix.'$2', $file);
   }
 };

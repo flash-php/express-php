@@ -6,13 +6,14 @@
  *
  * @author Ingo Andelhofs
  */
-class Component extends BaseTemplateEngine {
+class Component extends STemplatingEngine {
   public static function render(string $name, array $data) {
     try {
       $file = self::get_file_content($name, PATH_COMPONENTS, 'Component does not exist');
+      $file = self::compile_printing($file);
       self::render_file($file, $data);
     }
-    catch (FlashTemplateEngineException $e) {
+    catch (FlashTemplatingEngineException $e) {
       (new Response())->error("@Component: ".$e);
     }
   }

@@ -29,12 +29,13 @@ include './_modules/core/database/Database.php';
 include './_modules/core/database/DatabaseSchema.php';
 
 // Core: template engines
-include './_modules/core/engines/TemplateEngineStrategy.php';
-include './_modules/core/engines/FlashTemplateEngineException.php';
+include './_modules/core/engines/TemplatingEngineStrategy.php';
+include './_modules/core/engines/FlashTemplatingEngineException.php';
 
-include './_modules/core/engines/BaseTemplateEngine.php';
+include './_modules/core/engines/BaseTemplatingEngine.php';
 include './_modules/core/engines/NTemplatingEngine.php';
 include './_modules/core/engines/STemplatingEngine.php';
+include './_modules/core/engines/MTemplatingEngine.php';
 include './_modules/core/engines/Component.php';
 
 // Core: file handlers
