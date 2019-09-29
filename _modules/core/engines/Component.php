@@ -1,18 +1,22 @@
 <?php
 
 /**
- * Component Class
+ * Class Component <br>
+ * Create simple components using the component name of the Render method.
+ *
  * @author Ingo Andelhofs
- *
- * This simple class handles components with simple variables.
- *
- * @uses SimpleTemplatingEngine class
  */
-class Component {
-  public static $components_path = './components/';
-  public static $view_path = './views/';
-
-  public static function render($component_name, $dynamic_data) {
-    (new SimpleTemplatingEngine())->render_data("./components/$component_name.php", $dynamic_data);
+class Component extends BaseTemplateEngine {
+  public static function render(string $name, array $data) {
+    try {
+      $file = self::get_file_content($name, PATH_COMPONENTS, 'Component does not exist');
+      self::render_file($file, $data);
+    }
+    catch (FlashTemplateEngineException $e) {
+      (new Response())->error("@Component: ".$e);
+    }
+  }
+  public static function __callStatic($name, $arguments) {
+    self::render($name, $arguments[0] ?? []);
   }
 };

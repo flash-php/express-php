@@ -1,10 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="b7abebb5-ee84-49f9-9aec-3baa610dd651" name="Default Changelist" comment="">
+    <list default="true" id="b7abebb5-ee84-49f9-9aec-3baa610dd651" name="Default Changelist" comment="Added support for Middleware::next() and Middleware::block().">
+      <change afterPath="$PROJECT_DIR$/_modules/core/engines/FlashTemplateEngineException.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/_modules/core/engines/NTemplatingEngine.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_modules/core/engines/Component.php" beforeDir="false" afterPath="$PROJECT_DIR$/_modules/core/engines/Component.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_modules/core/engines/NoTemplatingEngine.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/_modules/core/engines/SimpleTemplatingEngine.php" beforeDir="false" afterPath="$PROJECT_DIR$/_modules/core/engines/SimpleTemplatingEngine.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_modules/core/engines/TemplateEngineException.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/_modules/core/engines/TemplateEngineStrategy.php" beforeDir="false" afterPath="$PROJECT_DIR$/_modules/core/engines/TemplateEngineStrategy.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_modules/core/http/Response/Response.php" beforeDir="false" afterPath="$PROJECT_DIR$/_modules/core/http/Response/Response.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/_modules/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/_modules/index.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/middleware/Auth.middleware.php" beforeDir="false" afterPath="$PROJECT_DIR$/middleware/Auth.middleware.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/Template1.php" beforeDir="false" afterPath="$PROJECT_DIR$/templates/Template1.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/home.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/home.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/home/template.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/home/template.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -58,11 +68,11 @@
       <recent name="C:\Users\Ingo Andelhofs\Documents\git\express-php\public\images" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Ingo Andelhofs\Documents\git\express-php\templates" />
       <recent name="C:\Users\Ingo Andelhofs\Documents\git\express-php\_modules\core\middleware" />
       <recent name="C:\Users\Ingo Andelhofs\Documents\git\express-php\_modules\core\exceptions" />
       <recent name="C:\Users\Ingo Andelhofs\Documents\git\express-php\_modules\core" />
       <recent name="C:\Users\Ingo Andelhofs\Documents\git\express-php\_modules\core\http\Response" />
-      <recent name="C:\Users\Ingo Andelhofs\Documents\git\express-php\private" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -96,7 +106,8 @@
       <workItem from="1569662061832" duration="320000" />
       <workItem from="1569662397936" duration="179000" />
       <workItem from="1569662593333" duration="4676000" />
-      <workItem from="1569668109369" duration="17177000" />
+      <workItem from="1569668109369" duration="28905000" />
+      <workItem from="1569755099422" duration="7564000" />
     </task>
     <task id="LOCAL-00001" summary="Added project to PHPStorm">
       <created>1569223424626</created>
@@ -168,7 +179,14 @@
       <option name="project" value="LOCAL" />
       <updated>1569685944109</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="Added support for Middleware::next() and Middleware::block().">
+      <created>1569686940390</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1569686940390</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -198,6 +216,7 @@
     <MESSAGE value="Added strategy pattern for TemplateEngines and restructured Template Engine Code. Simple example file changes." />
     <MESSAGE value="Added support for files (upload, read, download) and updated README. Added a global  base exception class." />
     <MESSAGE value="Added support for sessions and cookies. Updated README." />
-    <option name="LAST_COMMIT_MESSAGE" value="Added support for sessions and cookies. Updated README." />
+    <MESSAGE value="Added support for Middleware::next() and Middleware::block()." />
+    <option name="LAST_COMMIT_MESSAGE" value="Added support for Middleware::next() and Middleware::block()." />
   </component>
 </project>

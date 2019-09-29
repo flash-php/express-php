@@ -11,4 +11,4 @@ Config::default('PATH_MIDDLEWARE', './middleware');
 Config::default('DEFAULT_ROUTER_METHOD', 'index');
 Config::default('DEFAULT_ROUTER_ROUTE', 'home');
 
-Config::default_obj('TEMPLATE_ENGINE', new SimpleTemplatingEngine());
+Config::default_obj('TEMPLATE_ENGINE', new STemplatingEngine());

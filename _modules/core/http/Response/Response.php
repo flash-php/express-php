@@ -15,6 +15,10 @@ class Response {
     print(htmlspecialchars($data));
   }
 
+  public function error($data='') {
+    $this->send_r($data);
+  }
+
   public function send_r($data='') {
     echo "<pre style='font-family: inherit;'>";
     print_r($data);

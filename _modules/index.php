@@ -30,9 +30,11 @@ include './_modules/core/database/DatabaseSchema.php';
 
 // Core: template engines
 include './_modules/core/engines/TemplateEngineStrategy.php';
-include './_modules/core/engines/TemplateEngineException.php';
-include './_modules/core/engines/NoTemplatingEngine.php';
-include './_modules/core/engines/SimpleTemplatingEngine.php';
+include './_modules/core/engines/FlashTemplateEngineException.php';
+
+include './_modules/core/engines/BaseTemplateEngine.php';
+include './_modules/core/engines/NTemplatingEngine.php';
+include './_modules/core/engines/STemplatingEngine.php';
 include './_modules/core/engines/Component.php';
 
 // Core: file handlers
