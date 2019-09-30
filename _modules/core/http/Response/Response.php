@@ -34,6 +34,7 @@ class Response {
   public function view($name='home/index', $data=[]) {
     $engine = Config::TEMPLATE_ENGINE();
     $engine->compile_render($name, $data);
+    $this->end();
   }
 
   public function render($path='home/index', $data=[]) {

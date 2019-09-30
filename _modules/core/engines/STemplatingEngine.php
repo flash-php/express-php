@@ -63,6 +63,12 @@ class STemplatingEngine extends NTemplatingEngine implements TemplatingEngineStr
     // TODO: Check for empty @section, ... (dont trim section content away!)
     $keyword_and_value = array_filter($keyword_and_value, 'trim');
     $keyword_and_value = array_filter($keyword_and_value);
+
+    // Check for wrong splitting
+    $data = $keyword_and_value[0] ?? '';
+    if (trim($data) === trim($string))
+      return [];
+
     return array_values($keyword_and_value);
   }
   private function split_keyword_from_value(string $string, string $regex_split, int $limit = -1) : array {

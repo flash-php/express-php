@@ -44,6 +44,8 @@ include './_modules/core/files/FileUpload.php';
 
 // Core: validation
 include './_modules/core/validation/Validator.php';
+include './_modules/core/validation/ValidationError.php';
+include './_modules/core/validation/FlashValidationException.php';
 
 // Core: auth
 include './_modules/core/auth/Auth.php';
@@ -65,3 +67,5 @@ include './_modules/config/private/config.php';
 include './_modules/config/private/file.php';
 include './_modules/config/private/database.php';
 include './_modules/config/private/http.php';
+include './_modules/config/private/regex.php';
+
