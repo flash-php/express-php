@@ -14,7 +14,7 @@ Student at UHasselt (2019)
 ## Installation
 ### Simple dowload & require
 To start using FlashPHP, u first need to add the `/_modules` folder to your project.  
-Then u only need to require its `index.php` file.
+Then you only need to require the `index.php` file.
 ```php
 require_once './_modules/index.php';
 ```
@@ -23,7 +23,7 @@ require_once './_modules/index.php';
 Comming soon...
 
 ## Router Usage
-The biggest part of FlashPHP is its Router. U can easily create RESTful routes and use their given `$request` and `$response` objects to handle basic route functionalities. 
+The biggest part of FlashPHP is the Router. You can easily create RESTful routes and use their given `$request` and `$response` objects to handle basic route functionalities. 
 
 ### Initialization
 > index.php
