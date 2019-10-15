@@ -1,4 +1,7 @@
-<?php 
+<?php
+
+use FlashPHP\core\http\Request\Request;
+use FlashPHP\core\http\Response\Response;
 
 global $home;
 global $auth;

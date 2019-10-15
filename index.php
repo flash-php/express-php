@@ -1,7 +1,13 @@
 <?php
 
-// Load modules and init app
-require_once './_modules/index.php';
+use FlashPHP\core\http\Router;
+
+// Load FlashPHP modules
+require_once '_modules/autoload.php';
+
+// Load user config
+require_once 'app/config/config.php';
+
 
 // Set up routes
 $auth = new Router('/auth');

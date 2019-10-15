@@ -1,5 +1,8 @@
 <?php
 
+use FlashPHP\core\database\DatabaseSchema;
+use FlashPHP\core\database\Database;
+
 // Database schema
 new DatabaseSchema('User', [
   'id' => PDO::PARAM_INT,
