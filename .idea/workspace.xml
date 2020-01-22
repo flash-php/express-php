@@ -2,58 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b7abebb5-ee84-49f9-9aec-3baa610dd651" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/_modules/FlashPHP/autoload.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/_modules/FlashPHP/config/config.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/sqldialects.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sqldialects.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/_modules/config/config.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/_modules/config/private/config.php" beforeDir="false" afterPath="$PROJECT_DIR$/_modules/FlashPHP/config/private/config.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/_modules/config/private/database.php" beforeDir="false" afterPath="$PROJECT_DIR$/_modules/FlashPHP/config/private/database.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/_modules/config/private/file.php" beforeDir="false" afterPath="$PROJECT_DIR$/_modules/FlashPHP/config/private/file.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/_modules/config/private/http.php" beforeDir="false" afterPath="$PROJECT_DIR$/_modules/FlashPHP/config/private/http.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/_modules/config/private/regex.php" beforeDir="false" afterPath="$PROJECT_DIR$/_modules/FlashPHP/config/private/regex.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/_modules/core/auth/Auth.php" beforeDir="false" afterPath="$PROJECT_DIR$/_modules/FlashPHP/core/auth/Auth.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/_modules/core/auth/passwords/FacebookPassword.php" beforeDir="false" afterPath="$PROJECT_DIR$/_modules/FlashPHP/core/auth/passwords/FacebookPassword.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/_modules/core/auth/passwords/GooglePassword.php" beforeDir="false" afterPath="$PROJECT_DIR$/_modules/FlashPHP/core/auth/passwords/GooglePassword.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/_modules/core/auth/passwords/LocalPassword.php" beforeDir="false" afterPath="$PROJECT_DIR$/_modules/FlashPHP/core/auth/passwords/LocalPassword.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/_modules/core/auth/passwords/PasswordHandler.php" beforeDir="false" afterPath="$PROJECT_DIR$/_modules/FlashPHP/core/auth/passwords/PasswordHandler.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/_modules/core/auth/passwords/PasswordStrategy.php" beforeDir="false" afterPath="$PROJECT_DIR$/_modules/FlashPHP/interfaces/PasswordStrategy.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/_modules/core/database/Database.php" beforeDir="false" afterPath="$PROJECT_DIR$/_modules/FlashPHP/core/database/Database.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/_modules/core/database/DatabaseSchema.php" beforeDir="false" afterPath="$PROJECT_DIR$/_modules/FlashPHP/core/database/DatabaseSchema.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/_modules/core/engines/BaseTemplatingEngine.php" beforeDir="false" afterPath="$PROJECT_DIR$/_modules/FlashPHP/core/engines/BaseTemplatingEngine.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/_modules/core/engines/Component.php" beforeDir="false" afterPath="$PROJECT_DIR$/_modules/FlashPHP/core/engines/Component.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/_modules/core/engines/FlashTemplatingEngineException.php" beforeDir="false" afterPath="$PROJECT_DIR$/_modules/FlashPHP/core/engines/FlashTemplatingEngineException.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/_modules/core/engines/MTemplatingEngine.php" beforeDir="false" afterPath="$PROJECT_DIR$/_modules/FlashPHP/core/engines/MTemplatingEngine.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/_modules/core/engines/NTemplatingEngine.php" beforeDir="false" afterPath="$PROJECT_DIR$/_modules/FlashPHP/core/engines/NTemplatingEngine.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/_modules/core/engines/STemplatingEngine.php" beforeDir="false" afterPath="$PROJECT_DIR$/_modules/FlashPHP/core/engines/STemplatingEngine.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/_modules/core/engines/TemplatingEngineStrategy.php" beforeDir="false" afterPath="$PROJECT_DIR$/_modules/FlashPHP/interfaces/TemplatingEngineStrategy.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/_modules/core/exceptions/FlashPhpException.php" beforeDir="false" afterPath="$PROJECT_DIR$/_modules/FlashPHP/core/exceptions/FlashPhpException.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/_modules/core/files/FileUpload.php" beforeDir="false" afterPath="$PROJECT_DIR$/_modules/FlashPHP/core/files/FileUpload.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/_modules/core/http/FlashHttpException.php" beforeDir="false" afterPath="$PROJECT_DIR$/_modules/FlashPHP/core/http/FlashHttpException.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/_modules/core/http/Request/Request.php" beforeDir="false" afterPath="$PROJECT_DIR$/_modules/FlashPHP/core/http/Request/Request.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/_modules/core/http/Request/RequestBodyHandler.php" beforeDir="false" afterPath="$PROJECT_DIR$/_modules/FlashPHP/core/http/Request/RequestBodyHandler.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/_modules/core/http/Request/RequestCookieHandler.php" beforeDir="false" afterPath="$PROJECT_DIR$/_modules/FlashPHP/core/http/Request/RequestCookieHandler.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/_modules/core/http/Request/RequestFileHandler.php" beforeDir="false" afterPath="$PROJECT_DIR$/_modules/FlashPHP/core/http/Request/RequestFileHandler.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/_modules/core/http/Request/RequestSessionHandler.php" beforeDir="false" afterPath="$PROJECT_DIR$/_modules/FlashPHP/core/http/Request/RequestSessionHandler.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/_modules/core/http/Response/Response.php" beforeDir="false" afterPath="$PROJECT_DIR$/_modules/FlashPHP/core/http/Response/Response.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/_modules/core/http/Route.php" beforeDir="false" afterPath="$PROJECT_DIR$/_modules/FlashPHP/core/http/Route.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/_modules/core/http/Router.php" beforeDir="false" afterPath="$PROJECT_DIR$/_modules/FlashPHP/core/http/Router.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/_modules/core/middleware/Middleware.php" beforeDir="false" afterPath="$PROJECT_DIR$/_modules/FlashPHP/core/middleware/Middleware.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/_modules/core/validation/FlashValidationException.php" beforeDir="false" afterPath="$PROJECT_DIR$/_modules/FlashPHP/core/validation/FlashValidationException.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/_modules/core/validation/ValidationError.php" beforeDir="false" afterPath="$PROJECT_DIR$/_modules/FlashPHP/core/validation/ValidationError.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/_modules/core/validation/Validator.php" beforeDir="false" afterPath="$PROJECT_DIR$/_modules/FlashPHP/core/validation/Validator.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/_modules/deprecated/GetNullObj.php" beforeDir="false" afterPath="$PROJECT_DIR$/_modules/FlashPHP/deprecated/GetNullObj.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/_modules/helpers/AdvancedNullObject.php" beforeDir="false" afterPath="$PROJECT_DIR$/_modules/FlashPHP/helpers/AdvancedNullObject.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/_modules/helpers/Config.php" beforeDir="false" afterPath="$PROJECT_DIR$/_modules/FlashPHP/deprecated/OldConfig.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/_modules/helpers/helpers.php" beforeDir="false" afterPath="$PROJECT_DIR$/_modules/FlashPHP/helpers/helpers.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/_modules/index.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/middleware/Auth.middleware.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/middleware/Auth.middleware.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/models/User.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/models/User.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/routes/home.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/routes/home.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/index.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_modules/FlashPHP/core/http/Request/Request.php" beforeDir="false" afterPath="$PROJECT_DIR$/_modules/FlashPHP/core/http/Request/Request.php" afterDir="false" />
     </list>
     <list id="a097a9e8-55b6-4346-bd5e-173a036f3cba" name="Revert &quot;Moved application folders to the app folder.&quot;" comment="Revert &quot;Moved application folders to the app folder.&quot;&#10;&#10;This reverts commit 98dae7a5" />
-    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -98,6 +50,11 @@
   <component name="ProjectLevelVcsManager">
     <ConfirmationsSetting value="1" id="Add" />
   </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showExcludedFiles" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
   <component name="PropertiesComponent">
     <property name="DatabaseDriversLRU" value="mysql" />
     <property name="WebServerToolWindowFactoryState" value="false" />
@@ -117,15 +74,15 @@
       <recent name="C:\Users\Ingo Andelhofs\Documents\git\express-php\templates" />
     </key>
   </component>
-  <component name="RunDashboard">
-    <option name="ruleStates">
+  <component name="ServiceViewManager">
+    <option name="viewStates">
       <list>
-        <RuleState>
-          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
-        </RuleState>
-        <RuleState>
-          <option name="name" value="StatusDashboardGroupingRule" />
-        </RuleState>
+        <serviceView>
+          <treeState>
+            <expand />
+            <select />
+          </treeState>
+        </serviceView>
       </list>
     </option>
   </component>
@@ -166,7 +123,29 @@
       <workItem from="1570775511304" duration="288000" />
       <workItem from="1570810256572" duration="1250000" />
       <workItem from="1571061641482" duration="2088000" />
-      <workItem from="1571121377692" duration="667000" />
+      <workItem from="1571121377692" duration="1568000" />
+      <workItem from="1573221635899" duration="139000" />
+      <workItem from="1573665624839" duration="124000" />
+      <workItem from="1573666041238" duration="599000" />
+      <workItem from="1573845749686" duration="395000" />
+      <workItem from="1574179259665" duration="69000" />
+      <workItem from="1574179922662" duration="2108000" />
+      <workItem from="1574198868634" duration="337000" />
+      <workItem from="1574241242952" duration="17000" />
+      <workItem from="1574243538551" duration="992000" />
+      <workItem from="1574269456029" duration="1417000" />
+      <workItem from="1574843635488" duration="1748000" />
+      <workItem from="1574873614067" duration="2770000" />
+      <workItem from="1575203145602" duration="3527000" />
+      <workItem from="1575219765993" duration="7182000" />
+      <workItem from="1575302222552" duration="1337000" />
+      <workItem from="1575354560915" duration="1670000" />
+      <workItem from="1575381360253" duration="1002000" />
+      <workItem from="1575440967743" duration="618000" />
+      <workItem from="1575527270575" duration="933000" />
+      <workItem from="1575827060498" duration="82000" />
+      <workItem from="1575827154921" duration="1062000" />
+      <workItem from="1575876868992" duration="3462000" />
     </task>
     <task id="LOCAL-00001" summary="Added project to PHPStorm">
       <created>1569223424626</created>
@@ -266,7 +245,14 @@
       <option name="project" value="LOCAL" />
       <updated>1569788730888</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="Refactored code, created helpers and added autoload files.">
+      <created>1571122117426</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1571122117426</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -326,6 +312,7 @@
     <MESSAGE value="Updated the structure of the templating engines and cleaned up engine code." />
     <MESSAGE value="Added full support for templating engines (Base, N, S, M). First stable version of templating engines module." />
     <MESSAGE value="Added Auth class with simple authentication helper functions and created structure for PasswordStrategies." />
-    <option name="LAST_COMMIT_MESSAGE" value="Added Auth class with simple authentication helper functions and created structure for PasswordStrategies." />
+    <MESSAGE value="Refactored code, created helpers and added autoload files." />
+    <option name="LAST_COMMIT_MESSAGE" value="Refactored code, created helpers and added autoload files." />
   </component>
 </project>

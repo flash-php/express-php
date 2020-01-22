@@ -22,9 +22,9 @@ class Request {
     public $session;
     public $cookie;
     public $files;
+    public $params;
 
     public $db;
-    public $params;
 
     public function __construct($param_array) {
         $this->body = new RequestBodyHandler();
